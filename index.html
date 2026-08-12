@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>La Tiendita Valledupar - Tecnología y más para ti</title>
+    
+    <!-- Iconos de FontAwesome y Tipografía Poppins de Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           1. VARIABLES CSS (PALETA DE COLORES Y TEMA)
+           ========================================================================== */
+        :root {
+            /* MODO OSCURO (Predeterminado) */
+            --bg-primary: #0b0f19;
+            --bg-secondary: #151c2c;
+            --bg-card: #1e293b;
+            --bg-glass: rgba(30, 41, 59, 0.75);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            
+            /* PALETA DE COLORES TECNOLÓGICA Y VIBRANTE */
+            --electric-blue: #00d2ff;
+            --neon-pink: #ff007f;
+            --neon-green: #00ff88;
+            --gold: #ffb703;
+            --accent-gradient: linear-gradient(135deg, #00d2ff, #ff007f);
+            
+            /* MEDIDAS Y EFECTOS DE UI */
+            --bottom-nav-height: 65px;
+            --top-header-height: 70px;
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --shadow-glow: 0 0 15deg rgba(0, 210, 255, 0.2);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* MODO CLARO (Activado vía JavaScript con data-theme="light") */
+        [data-theme="light"] {
+            --bg-primary: #f1f5f9;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.85);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --shadow-glow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* ==========================================================================
+           2. ESTILOS GENERALES Y RESET
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            overflow-x: hidden;
+            padding-top: var(--top-header-height);
+            padding-bottom: calc(var(--bottom-nav-height) + 20px);
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Barra de desplazamiento personalizada */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-card); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--electric-blue); }
+
+        /* ==========================================================================
+           3. ENCABEZADO FIJO (HEADER) Y LOGO
+           ========================================================================== */
+        .top-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--top-header-height);
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo-container {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            padding: 2px;
+            background: var(--accent-gradient);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .brand-logo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: var(--bg-secondary);
+        }
+
+        .brand-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.05);
+            border-color: var(--electric-blue);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: var(--neon-pink);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ==========================================================================
+           4. VISTAS PRINCIPALES (SECCIONES DE LA NAVEGACIÓN)
+           ========================================================================== */
+        .app-view {
+            display: none;
+            padding: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 0.4s ease both;
+        }
+
+        .app-view.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Banners y Contenedores */
+        .hero-banner {
+            background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px 16px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .hero-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
+        .hero-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-social {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-social.facebook { background: #1877f2; }
+        .btn-social.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .btn-social.tiktok { background: #000000; border: 1px solid #333; }
+        .btn-social:hover { transform: translateY(-3px); }
+
+        /* Búsqueda y Categorías */
+        .search-container {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 16px 14px 48px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-main);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            border-color: var(--electric-blue);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .categories-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .categories-scroll::-webkit-scrollbar { display: none; }
+
+        .category-chip {
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            white-space: nowrap;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .category-chip.active {
+            background: var(--accent-gradient);
+            color: #fff;
+            border-color: transparent;
+            font-weight: 600;
+        }
+
+        /* Grid de Tarjetas de Productos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+        }
+
+        @media (min-width: 600px) {
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--electric-blue);
+        }
+
+        .product-img-wrapper {
+            width: 100%;
+            height: 140px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: var(--bg-secondary);
+            margin-bottom: 12px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 2.6em;
+            cursor: pointer;
+        }
+
+        .product-price {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--neon-green);
+            margin-bottom: 8px;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            padding: 10px;
+            background: var(--accent-gradient);
+            border: none;
+            border-radius: var(--radius-sm);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-add-cart:active { transform: scale(0.96); }
+
+        /* ==========================================================================
+           5. MODAL DE DETALLES Y CARRITO LATERAL
+           ========================================================================== */
+        /* Modal Detalle */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        @media (min-width: 600px) { .modal-overlay { align-items: center; padding: 20px; } }
+
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            width: 100%;
+            max-width: 500px;
+            border-top-left-radius: var(--radius-lg);
+            border-top-right-radius: var(--radius-lg);
+            padding: 24px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+
+        @media (min-width: 600px) { .modal-content { border-radius: var(--radius-lg); } }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--bg-card);
+            border: none;
+            color: var(--text-main);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+        }
+
+        /* Carrito Lateral (Drawer) */
+        .cart-drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 2500;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .cart-drawer-overlay.active { opacity: 1; pointer-events: auto; }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: var(--bg-secondary);
+            z-index: 2600;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.3s ease;
+        }
+
+        .cart-drawer.active { right: 0; }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            padding: 10px;
+            border-radius: var(--radius-md);
+        }
+
+        .cart-item-img {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-card);
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 14px;
+            background: #25d366;
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* ==========================================================================
+           6. NAVEGACIÓN INFERIOR (BOTTOM NAVIGATION BAR) Y BOTÓN FLOTANTE
+           ========================================================================== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: calc(var(--bottom-nav-height) + 16px);
+            right: 16px;
+            width: 50px;
+            height: 50px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            z-index: 900;
+            text-decoration: none;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--bottom-nav-height);
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 25%;
+        }
+
+        .nav-item i { font-size: 1.2rem; margin-bottom: 2px; }
+        .nav-item.active { color: var(--electric-blue); font-weight: 700; }
+
+        /* Toast de notificación */
+        .toast {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: var(--accent-gradient);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 3000;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    </style>
+</head>
+<body>
+
+    <!-- Notificación Toast -->
+    <div id="toast" class="toast">Mensaje del sistema</div>
+
+    <!-- ENCABEZADO SUPERIOR -->
+    <header class="top-header">
+        <div class="brand-container">
+            <div class="brand-logo-container">
+                <!-- SVG de Logo predeterminado -->
+                <img src="img/logo.jpeg" alt="Logo La Tiendita" class="brand-logo">
+            </div>
+            <div>
+                <h1 class="brand-title">La Tiendita</h1>
+                <span style="font-size: 0.65rem; color: var(--text-muted); display: block;">Valledupar</span>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <!-- Botón para alternar Tema Claro / Oscuro -->
+            <button class="icon-btn" id="themeToggle" aria-label="Cambiar Tema">
+                <i class="fas fa-moon"></i>
+            </button>
+            <!-- Botón para abrir el Carrito Lateral -->
+            <button class="icon-btn" id="cartToggle" aria-label="Ver Carrito">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-badge" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL (VISTAS) -->
+    <main>
+        <!-- VISTA: INICIO -->
+        <section id="view-inicio" class="app-view active">
+            <div class="hero-banner">
+                <h2 class="hero-title">Tecnología y más para ti</h2>
+                <p class="hero-subtitle">Encuentra los mejores dispositivos y accesorios en Valledupar.</p>
+                <div class="social-buttons">
+                    <a href="https://facebook.com/latienditavalledupar" target="_blank" class="btn-social facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/latienditavalleduparr" target="_blank" class="btn-social instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com" target="_blank" class="btn-social tiktok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <h3 style="font-size: 1.1rem; margin-bottom: 12px;">Destacados</h3>
+            <div class="products-grid" id="featuredProducts"></div>
+        </section>
+
+        <!-- VISTA: PRODUCTOS -->
+        <section id="view-productos" class="app-view">
+            <!-- Buscador -->
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar productos...">
+            </div>
+
+            <!-- Filtros por Categoría -->
+            <div class="categories-scroll" id="categoriesContainer"></div>
+
+            <!-- Grid de Todos los Productos -->
+            <div class="products-grid" id="mainProductsGrid"></div>
+        </section>
+
+        <!-- VISTA: EMPRESA -->
+        <section id="view-empresa" class="app-view">
+            <div class="hero-banner" style="text-align: left;">
+                <h2 class="hero-title" style="color: var(--electric-blue);">La Tiendita Valledupar</h2>
+                <p style="font-size: 0.9rem; line-height: 1.5; margin-top: 10px;">
+                    Somos tu comercio local en Valledupar especializado en tecnología, dispositivos electrónicos, audio y accesorios de telefonía celular. Ofrecemos atención directa y domicilios rápidos.
+                </p>
+            </div>
+        </section>
+
+        <!-- VISTA: UBICACIÓN -->
+        <section id="view-ubicacion" class="app-view">
+            <h3 style="margin-bottom: 8px;">Nuestra Ubicación</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
+                Carrera 20 # 13b bis - 07, Valledupar, Colombia
+            </p>
+
+            <!-- Mapa Integrado -->
+            <div style="width: 100%; height: 200px; border-radius: var(--radius-md); overflow: hidden; margin-bottom: 16px;">
+                <iframe 
+                    title="Ubicación La Tiendita"
+                    src="https://maps.google.com/maps?q=Carrera%2020%20%23%2013b%20bis%20-%2007%2C%20Valledupar%2C%20Colombia&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                    width="100%" height="100%" style="border:0;" loading="lazy">
+                </iframe>
+            </div>
+
+            <a href="https://maps.google.com/?q=Carrera+20+#+13b+bis+-+07,+Valledupar,+Colombia" target="_blank" class="btn-add-cart" style="display: block; text-align: center; text-decoration: none;">
+                <i class="fas fa-directions"></i> CÓMO LLEGAR
+            </a>
+        </section>
+    </main>
+
+    <!-- MODAL DETALLE DE PRODUCTO -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal"><i class="fas fa-times"></i></button>
+            <img src="" alt="" class="modal-img" id="modalImg">
+            <h3 id="modalTitle" style="margin-bottom: 6px;"></h3>
+            <div id="modalPrice" style="font-size: 1.3rem; font-weight: 700; color: var(--neon-green); margin-bottom: 12px;"></div>
+            <p id="modalDesc" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;"></p>
+            
+            <button class="btn-add-cart" id="modalAddBtn" style="margin-bottom: 8px;">
+                <i class="fas fa-cart-plus"></i> Agregar al carrito
+            </button>
+            <a href="#" target="_blank" id="modalWspBtn" class="btn-checkout" style="text-decoration: none;">
+                <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- CARRITO DRAWER LATERAL -->
+    <div class="cart-drawer-overlay" id="cartOverlay"></div>
+    <aside class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Mi Carrito</h3>
+            <button class="icon-btn" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-body" id="cartItemsContainer"></div>
+        <div class="cart-footer">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-weight: 700;">
+                <span>Total:</span>
+                <span id="cartTotal" style="color: var(--neon-green);">$0</span>
+            </div>
+            <button class="btn-checkout" id="btnCheckout">
+                <i class="fab fa-whatsapp"></i> FINALIZAR COMPRA
+            </button>
+        </div>
+    </aside>
+
+    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+    <a href="https://wa.me/573235652270" target="_blank" class="whatsapp-float" aria-label="WhatsApp Directo">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- NAVEGACIÓN INFERIOR FIJA -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" onclick="switchView('inicio')">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </button>
+        <button class="nav-item" onclick="switchView('productos')">
+            <i class="fas fa-mobile-alt"></i>
+            <span>Productos</span>
+        </button>
+        <button class="nav-item" onclick="switchView('empresa')">
+            <i class="fas fa-store"></i>
+            <span>Empresa</span>
+        </button>
+        <button class="nav-item" onclick="switchView('ubicacion')">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Ubicación</span>
+        </button>
+    </nav>
+
+    <!-- ==========================================================================
+       7. LÓGICA JAVASCRIPT Y GESTIÓN DE GOOGLE DRIVE
+       ========================================================================== -->
+    <script>
+        
+        /**
+         * SISTEMA DE IMÁGENES DE GOOGLE DRIVE (CON RESPALDO AUTOMÁTICO)
+         * ---------------------------------------------------------------
+         * IMPORTANTE — LEE ESTO:
+         * Google NO ofrece una forma oficial ni garantizada de "incrustar" imágenes
+         * de Drive en una página web. Los trucos de URL (uc?export=view, /thumbnail,
+         * lh3.googleusercontent.com) son formatos NO documentados que Google cambia
+         * o bloquea sin previo aviso (errores 403/400, límite de peticiones, etc.).
+         * Por eso, en vez de depender de un solo formato, generamos varias
+         * variantes de URL para cada imagen y, si una falla al cargar, el propio
+         * <img> intenta automáticamente con la siguiente (evento onerror), y si
+         * todas fallan, se muestra una imagen de reemplazo en vez de un ícono roto.
+         *
+         * Formatos de enlace de Drive soportados como ENTRADA:
+         * - https://drive.google.com/file/d/ID/view?usp=sharing (o usp=drive_link)
+         * - https://drive.google.com/open?id=ID
+         * - https://drive.google.com/uc?id=ID
+         * - https://lh3.googleusercontent.com/d/ID
+         * - Cualquier otra URL de imagen normal (se usa tal cual, sin cambios).
+         *
+         * REQUISITO EN DRIVE: cada archivo debe estar compartido como
+         * "Cualquier persona con el enlace" (rol: Lector). Si el archivo es privado,
+         * ningún formato de URL va a funcionar.
+         */
+
+        // Imagen de repuesto (SVG en base64) que se muestra si TODAS las variantes fallan
+        const PLACEHOLDER_IMAGE = "data:image/svg+xml;base64," + btoa(`
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                <rect width="400" height="400" fill="#1e293b"/>
+                <g fill="#64748b">
+                    <path d="M140 150h120a10 10 0 0 1 10 10v100a10 10 0 0 1-10 10H140a10 10 0 0 1-10-10V160a10 10 0 0 1 10-10z" fill="none" stroke="#64748b" stroke-width="6"/>
+                    <circle cx="165" cy="180" r="10"/>
+                    <path d="M130 245l45-40 35 30 35-45 55 55v20a10 10 0 0 1-10 10H140a10 10 0 0 1-10-10z"/>
+                </g>
+                <text x="200" y="290" fill="#64748b" font-family="sans-serif" font-size="13" text-anchor="middle">Imagen no disponible</text>
+            </svg>
+        `);
+
+        // Extrae el ID único del archivo a partir de cualquier formato conocido de enlace de Drive
+        function extractGoogleDriveId(url) {
+            if (!url) return null;
+            const driveRegex = /(?:drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=view&)?id=|thumbnail\?id=)|lh3\.googleusercontent\.com\/d\/)([a-zA-Z0-9_-]+)/;
+            const match = url.match(driveRegex);
+            return match ? match[1] : null;
+        }
+
+        // Genera, en orden de fiabilidad, todas las variantes de URL a intentar para un mismo archivo
+        function getGoogleDriveImageVariants(url) {
+            const id = extractGoogleDriveId(url);
+            if (!id) return [url]; // No es un enlace de Drive: se usa la URL original tal cual
+            return [
+                `https://lh3.googleusercontent.com/d/${id}=w1000`,
+                `https://drive.google.com/thumbnail?id=${id}&sz=w1000`,
+                `https://drive.google.com/uc?export=view&id=${id}`
+            ];
+        }
+
+        // Construye el atributo src inicial + la lista de respaldos como data-attribute
+        function buildImageAttrs(url) {
+            const variants = getGoogleDriveImageVariants(url);
+            const [first, ...rest] = variants;
+            const fallbacksAttr = JSON.stringify(rest).replace(/"/g, '&quot;');
+            return `src="${first}" data-fallbacks='${fallbacksAttr}' onerror="handleImageError(this)"`;
+        }
+
+        // Se ejecuta cuando una <img> falla al cargar: prueba el siguiente formato o, si ya no quedan, muestra el placeholder
+        function handleImageError(imgEl) {
+            let fallbacks = [];
+            try { fallbacks = JSON.parse((imgEl.dataset.fallbacks || '[]').replace(/&quot;/g, '"')); } catch (e) { fallbacks = []; }
+
+            if (fallbacks.length > 0) {
+                const next = fallbacks.shift();
+                imgEl.dataset.fallbacks = JSON.stringify(fallbacks);
+                imgEl.src = next;
+            } else {
+                imgEl.onerror = null; // evita bucles infinitos
+                imgEl.src = PLACEHOLDER_IMAGE;
+            }
+        }
+
+        /* ==========================================================================
+           BASE DE DATOS DE PRODUCTOS
+           Para usar tus propias imágenes de Google Drive, simplemente copia el enlace
+           de compartir en la propiedad "image".
+           ========================================================================== */
+        const PRODUCTS_DATA = [
+            {
+                id: "cel-01",
+                name: "Smartphone X Pro 128GB",
+                category: "Celulares",
+                price: 850000,
+                stock: 5,
+                image: "https://drive.google.com/file/d/1NQA4vXSbDeF-Gox5TiKKAKTotIB0rDS-/view?usp=drive_link",
+                description: "Pantalla AMOLED 120Hz, cámara triple de 64MP y batería para todo el día.",
+                featured: true
+            },
+            {
+                id: "cel-02",
+                name: "Smartphone Lite Y20",
+                category: "Celulares",
+                price: 620000,
+                stock: 8,
+                image: "https://drive.google.com/file/d/1c8T6hfoNu9aBed4pEgiLafaJBdQaM04h/view?usp=drive_link",
+                description: "Diseño compacto, cámara dual de 48MP y carga rápida incluida.",
+                featured: false
+            },
+            {
+                id: "aud-01",
+                name: "Audífonos Bluetooth Pro Sound",
+                category: "Audífonos",
+                price: 89000,
+                stock: 12,
+                image: "https://drive.google.com/file/d/1Arx8WrpSBB6mqkoP5m1D0W5b3m5R5-YJ/view?usp=drive_link",
+                description: "Cancelación de ruido activa, graves profundos y hasta 24h de reproducción.",
+                featured: true
+            },
+            {
+                id: "aud-02",
+                name: "USB 8GB Kingston",
+                category: "Accesorios",
+                price: 50000,
+                stock: 12,
+                image: "https://drive.google.com/file/d/1EBTNsu6riKZScbhHBIGkPCCYXY97oQey/view?usp=drive_link",
+                description: "La Kingston Data Traveler SE9 está fabricada con una carcasa metálica ultra resistente y ligera con un diseño con sin tapa para que nunca pierdas nada..",
+                featured: true
+            },
+            {
+                id: "sw-01",
+                name: "Smartwatch Sport X10",
+                category: "Smartwatch",
+                price: 129000,
+                stock: 8,
+                image: "https://drive.google.com/file/d/1FAyf1HaGGs1eYG168-Mu6eT75LnHeNXA/view?usp=drive_link",
+                description: "Monitoreo de ritmo cardíaco, GPS integrado y resistencia al agua IP68.",
+                featured: true
+            },
+            {
+                id: "carg-01",
+                name: "Cargador Carga Rápida 33W Tipo C",
+                category: "Cargadores",
+                price: 45000,
+                stock: 20,
+                image: "https://drive.google.com/file/d/17J_MnTo-Zbwt-Eujiw6vWmS8UGaSRyWU/view?usp=drive_link",
+                description: "Carga super rápida con protección contra sobrecargas.",
+                featured: false
+            },
+            {
+                id: "parl-01",
+                name: "Parlante Bluetooth SoundBox Mini",
+                category: "Parlantes",
+                price: 95000,
+                stock: 10,
+                image: "https://drive.google.com/file/d/14gZmUYt-QKxERJ8eR5_8Su3MGsqbUjTF/view?usp=drive_link",
+                description: "Sonido envolvente, resistente al agua IPX6 y 10 horas de batería.",
+                featured: true
+            },
+            {
+                id: "hog-01",
+                name: "Bombillo Inteligente WiFi RGB",
+                category: "Hogar Inteligente",
+                price: 38000,
+                stock: 15,
+                image: "https://drive.google.com/file/d/1fbHD53OuJVh5btROlwzNOXFSu5Wbbvdd/view?usp=drive_link",
+                description: "Control por app y voz, 16 millones de colores, compatible con Alexa y Google Home.",
+                featured: false
+            }
+        ];
+
+        const CATEGORIES = ["Todos", "Celulares", "Accesorios", "Audífonos", "Cargadores", "Smartwatch", "Parlantes", "Hogar Inteligente"];
+
+        /* ESTADO GLOBAL DE LA APLICACIÓN */
+        let cart = [];
+        let currentCategory = "Todos";
+        let activeModalProduct = null;
+
+        /* ELEMENTOS DEL DOM */
+        const mainProductsGrid = document.getElementById("mainProductsGrid");
+        const featuredProductsGrid = document.getElementById("featuredProducts");
+        const categoriesContainer = document.getElementById("categoriesContainer");
+        const searchInput = document.getElementById("searchInput");
+        const cartDrawer = document.getElementById("cartDrawer");
+        const cartOverlay = document.getElementById("cartOverlay");
+        const cartToggleBtn = document.getElementById("cartToggle");
+        const closeCartBtn = document.getElementById("closeCart");
+        const cartCountBadge = document.getElementById("cartCount");
+        const cartItemsContainer = document.getElementById("cartItemsContainer");
+        const cartTotalEl = document.getElementById("cartTotal");
+        const productModal = document.getElementById("productModal");
+
+        /* INICIALIZACIÓN DE LA APLICACIÓN */
+        document.addEventListener("DOMContentLoaded", () => {
+            renderCategories();
+            renderProducts(PRODUCTS_DATA);
+            renderFeaturedProducts();
+            setupEventListeners();
+        });
+
+        /* CAMBIO DE VISTAS (Navegación Dinámica SPA) */
+        function switchView(viewName) {
+            document.querySelectorAll(".app-view").forEach(el => el.classList.remove("active"));
+            document.querySelectorAll(".nav-item").forEach(el => el.classList.remove("active"));
+
+            const targetView = document.getElementById(`view-${viewName}`);
+            if (targetView) targetView.classList.add("active");
+
+            const viewsIndex = { 'inicio': 0, 'productos': 1, 'empresa': 2, 'ubicacion': 3 };
+            const navItems = document.querySelectorAll(".nav-item");
+            if (viewsIndex[viewName] !== undefined) navItems[viewsIndex[viewName]].classList.add("active");
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* FORMATEADOR DE MONEDA */
+        function formatPrice(val) {
+            return new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(val);
+        }
+
+        /* RENDERIZADO DE CATEGORÍAS */
+        function renderCategories() {
+            categoriesContainer.innerHTML = CATEGORIES.map(cat => `
+                <button class="category-chip ${cat === currentCategory ? 'active' : ''}" onclick="filterByCategory('${cat}')">
+                    ${cat}
+                </button>
+            `).join("");
+        }
+
+        /* RENDERIZADO DE TARJETAS DE PRODUCTOS */
+        function renderProducts(productsList) {
+            if (productsList.length === 0) {
+                mainProductsGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 20px;">No se encontraron productos.</p>`;
+                return;
+            }
+
+            mainProductsGrid.innerHTML = productsList.map(prod => {
+                return `
+                    <div class="product-card">
+                        <div class="product-img-wrapper" onclick="openProductModal('${prod.id}')">
+                            <img ${buildImageAttrs(prod.image)} alt="${prod.name}" class="product-img" loading="lazy">
+                        </div>
+                        <h4 class="product-title" onclick="openProductModal('${prod.id}')">${prod.name}</h4>
+                        <div class="product-price">${formatPrice(prod.price)}</div>
+                        <button class="btn-add-cart" onclick="addToCart('${prod.id}')">
+                            <i class="fas fa-cart-plus"></i> Agregar
+                        </button>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        /* RENDERIZADO DE PRODUCTOS DESTACADOS */
+        function renderFeaturedProducts() {
+            const featured = PRODUCTS_DATA.filter(p => p.featured);
+            featuredProductsGrid.innerHTML = featured.map(prod => {
+                return `
+                    <div class="product-card">
+                        <div class="product-img-wrapper" onclick="openProductModal('${prod.id}')">
+                            <img ${buildImageAttrs(prod.image)} alt="${prod.name}" class="product-img" loading="lazy">
+                        </div>
+                        <h4 class="product-title" onclick="openProductModal('${prod.id}')">${prod.name}</h4>
+                        <div class="product-price">${formatPrice(prod.price)}</div>
+                        <button class="btn-add-cart" onclick="addToCart('${prod.id}')">
+                            <i class="fas fa-cart-plus"></i> Agregar
+                        </button>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        /* FILTRADO Y BÚSQUEDA DE PRODUCTOS */
+        function filterByCategory(cat) {
+            currentCategory = cat;
+            renderCategories();
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const query = searchInput.value.toLowerCase().trim();
+            let filtered = PRODUCTS_DATA;
+
+            if (currentCategory !== "Todos") {
+                filtered = filtered.filter(p => p.category === currentCategory);
+            }
+
+            if (query !== "") {
+                filtered = filtered.filter(p => p.name.toLowerCase().includes(query));
+            }
+
+            renderProducts(filtered);
+        }
+
+        /* LÓGICA DEL CARRITO DE COMPRAS */
+        function addToCart(productId) {
+            const product = PRODUCTS_DATA.find(p => p.id === productId);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            showToast("Producto agregado al carrito");
+            updateCartUI();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(i => i.id !== productId);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            // Actualización del contador en la barra superior
+            const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+            cartCountBadge.innerText = totalItems;
+
+            // Render de los elementos dentro del carrito
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `<p style="text-align: center; color: var(--text-muted); margin-top: 20px;">Tu carrito está vacío.</p>`;
+            } else {
+                cartItemsContainer.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img ${buildImageAttrs(item.image)} class="cart-item-img" alt="${item.name}">
+                        <div style="flex:1;">
+                            <div style="font-size:0.85rem; font-weight:600;">${item.name}</div>
+                            <div style="font-size:0.8rem; color:var(--neon-green);">${formatPrice(item.price)} x ${item.quantity}</div>
+                        </div>
+                        <button onclick="removeFromCart('${item.id}')" style="background:none; border:none; color:var(--neon-pink); cursor:pointer;">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                `).join("");
+            }
+
+            // Cálculo y actualización del precio total
+            const totalAmount = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            cartTotalEl.innerText = formatPrice(totalAmount);
+        }
+
+        /* FINALIZACIÓN DE COMPRA VÍA WHATSAPP */
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert("Agrega al menos un producto al carrito.");
+                return;
+            }
+
+            let message = "Hola, La Tiendita Valledupar. Estoy interesado en realizar la siguiente compra:\n\n🛍️ *Mi pedido:*\n\n";
+
+            cart.forEach(item => {
+                const subtotal = item.price * item.quantity;
+                message += `• *${item.name}*\n  Cantidad: ${item.quantity}\n  Precio unitario: ${formatPrice(item.price)}\n  Subtotal: ${formatPrice(subtotal)}\n\n`;
+            });
+
+            const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            message += `💰 *Total: ${formatPrice(total)}*\n\nQuisiera recibir información sobre disponibilidad y formas de pago.`;
+
+            // Encriptado de mensaje e integración con la API de WhatsApp
+            const encodedText = encodeURIComponent(message);
+            window.open(`https://wa.me/573235652270?text=${encodedText}`, "_blank");
+        }
+
+        /* MODAL DE DETALLE DE PRODUCTO */
+        function openProductModal(productId) {
+            const product = PRODUCTS_DATA.find(p => p.id === productId);
+            if (!product) return;
+
+            activeModalProduct = product;
+            const modalImgEl = document.getElementById("modalImg");
+            const variants = getGoogleDriveImageVariants(product.image);
+            modalImgEl.dataset.fallbacks = JSON.stringify(variants.slice(1));
+            modalImgEl.onerror = () => handleImageError(modalImgEl);
+            modalImgEl.src = variants[0];
+            document.getElementById("modalTitle").innerText = product.name;
+            document.getElementById("modalPrice").innerText = formatPrice(product.price);
+            document.getElementById("modalDesc").innerText = product.description;
+
+            const wspMsg = encodeURIComponent(`Hola La Tiendita Valledupar, me interesa el producto: ${product.name}`);
+            document.getElementById("modalWspBtn").href = `https://wa.me/573235652270?text=${wspMsg}`;
+
+            productModal.classList.add("active");
+        }
+
+        function closeModal() {
+            productModal.classList.remove("active");
+        }
+
+        /* NOTIFICACIÓN TOAST VISUAL */
+        function showToast(msg) {
+            const toast = document.getElementById("toast");
+            toast.innerText = msg;
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 2000);
+        }
+
+        /* CONTROLADORES DE EVENTOS (Listeners) */
+        function setupEventListeners() {
+            // Mostrar y ocultar carrito lateral
+            cartToggleBtn.addEventListener("click", () => {
+                cartDrawer.classList.add("active");
+                cartOverlay.classList.add("active");
+            });
+
+            closeCartBtn.addEventListener("click", () => {
+                cartDrawer.classList.remove("active");
+                cartOverlay.classList.remove("active");
+            });
+
+            cartOverlay.addEventListener("click", () => {
+                cartDrawer.classList.remove("active");
+                cartOverlay.classList.remove("active");
+            });
+
+            // Acción del botón Finalizar Compra
+            document.getElementById("btnCheckout").addEventListener("click", checkoutWhatsApp);
+
+            // Cierre del Modal
+            document.getElementById("closeModal").addEventListener("click", closeModal);
+            productModal.addEventListener("click", (e) => {
+                if (e.target === productModal) closeModal();
+            });
+
+            document.getElementById("modalAddBtn").addEventListener("click", () => {
+                if (activeModalProduct) {
+                    addToCart(activeModalProduct.id);
+                    closeModal();
+                }
+            });
+
+            // Buscador dinámico
+            searchInput.addEventListener("input", applyFilters);
+
+            // Cierre por tecla ESC
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") {
+                    closeModal();
+                    cartDrawer.classList.remove("active");
+                    cartOverlay.classList.remove("active");
+                }
+            });
+
+            // Alternar Tema Claro / Oscuro
+            document.getElementById("themeToggle").addEventListener("click", () => {
+                const currentTheme = document.documentElement.getAttribute("data-theme");
+                const newTheme = currentTheme === "dark" ? "light" : "dark";
+                document.documentElement.setAttribute("data-theme", newTheme);
+            });
+        }
+    </script>
+</body>
+</html>
