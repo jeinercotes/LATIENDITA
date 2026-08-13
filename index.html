@@ -3,34 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>La Tiendita Valledupar - Tecnología y más para ti</title>
+    <title>La Tiendita Valledupar - Tecnología, Avisos Neón y más</title>
     
-    <!-- Iconos de FontAwesome y Tipografía Poppins de Google Fonts -->
+    <!-- Iconos de FontAwesome y Tipografía Poppins -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         /* ==========================================================================
-           1. VARIABLES CSS (PALETA DE COLORES Y TEMA)
+           1. VARIABLES CSS (PALETA Y TEMA)
            ========================================================================== */
         :root {
-            /* MODO OSCURO (Predeterminado) */
             --bg-primary: #0b0f19;
             --bg-secondary: #151c2c;
             --bg-card: #1e293b;
-            --bg-glass: rgba(30, 41, 59, 0.75);
+            --bg-glass: rgba(30, 41, 59, 0.85);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --border-color: rgba(255, 255, 255, 0.08);
             
-            /* PALETA DE COLORES TECNOLÓGICA Y VIBRANTE */
             --electric-blue: #00d2ff;
             --neon-pink: #ff007f;
             --neon-green: #00ff88;
             --gold: #ffb703;
             --accent-gradient: linear-gradient(135deg, #00d2ff, #ff007f);
             
-            /* MEDIDAS Y EFECTOS DE UI */
             --bottom-nav-height: 65px;
             --top-header-height: 70px;
             --radius-sm: 8px;
@@ -40,7 +37,6 @@
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* MODO CLARO (Activado vía JavaScript con data-theme="light") */
         [data-theme="light"] {
             --bg-primary: #f1f5f9;
             --bg-secondary: #ffffff;
@@ -52,9 +48,6 @@
             --shadow-glow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
-        /* ==========================================================================
-           2. ESTILOS GENERALES Y RESET
-           ========================================================================== */
         * {
             margin: 0;
             padding: 0;
@@ -73,24 +66,19 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Barra de desplazamiento personalizada */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-primary); }
         ::-webkit-scrollbar-thumb { background: var(--bg-card); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--electric-blue); }
 
         /* ==========================================================================
-           3. ENCABEZADO FIJO (HEADER) Y LOGO
+           2. HEADER Y LOGO
            ========================================================================== */
         .top-header {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: var(--top-header-height);
             background: var(--bg-glass);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -99,15 +87,10 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .brand-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .brand-container { display: flex; align-items: center; gap: 12px; }
 
         .brand-logo-container {
-            width: 45px;
-            height: 45px;
+            width: 45px; height: 45px;
             border-radius: 50%;
             padding: 2px;
             background: var(--accent-gradient);
@@ -115,8 +98,7 @@
         }
 
         .brand-logo {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             border-radius: 50%;
             object-fit: cover;
             background-color: var(--bg-secondary);
@@ -131,50 +113,34 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .header-actions { display: flex; align-items: center; gap: 12px; }
 
         .icon-btn {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             cursor: pointer;
             position: relative;
             transition: var(--transition);
         }
 
-        .icon-btn:hover {
-            transform: scale(1.05);
-            border-color: var(--electric-blue);
-        }
-
         .cart-badge {
             position: absolute;
-            top: -2px;
-            right: -2px;
+            top: -2px; right: -2px;
             background: var(--neon-pink);
             color: #fff;
             font-size: 0.7rem;
             font-weight: 700;
-            width: 18px;
-            height: 18px;
+            width: 18px; height: 18px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
         }
 
         /* ==========================================================================
-           4. VISTAS PRINCIPALES (SECCIONES DE LA NAVEGACIÓN)
+           3. VISTAS Y BANNER
            ========================================================================== */
         .app-view {
             display: none;
@@ -191,7 +157,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Banners y Contenedores */
         .hero-banner {
             background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
             border: 1px solid var(--border-color);
@@ -204,35 +169,20 @@
         .hero-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
         .hero-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; }
 
-        .social-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-        }
-
+        .social-buttons { display: flex; justify-content: center; gap: 12px; }
         .btn-social {
-            width: 42px;
-            height: 42px;
+            width: 42px; height: 42px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
+            display: flex; align-items: center; justify-content: center;
+            color: white; text-decoration: none;
             transition: var(--transition);
         }
-
         .btn-social.facebook { background: #1877f2; }
         .btn-social.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-        .btn-social.tiktok { background: #000000; border: 1px solid #333; }
-        .btn-social:hover { transform: translateY(-3px); }
+        .btn-social.tiktok { background: #000; border: 1px solid #333; }
 
         /* Búsqueda y Categorías */
-        .search-container {
-            position: relative;
-            margin-bottom: 16px;
-        }
-
+        .search-container { position: relative; margin-bottom: 16px; }
         .search-input {
             width: 100%;
             padding: 14px 16px 14px 48px;
@@ -241,30 +191,14 @@
             border-radius: var(--radius-md);
             color: var(--text-main);
             outline: none;
-            transition: var(--transition);
         }
-
-        .search-input:focus {
-            border-color: var(--electric-blue);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-        }
+        .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
 
         .categories-scroll {
-            display: flex;
-            gap: 10px;
+            display: flex; gap: 10px;
             overflow-x: auto;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            padding-bottom: 10px; margin-bottom: 20px;
         }
-
         .categories-scroll::-webkit-scrollbar { display: none; }
 
         .category-chip {
@@ -281,18 +215,15 @@
 
         .category-chip.active {
             background: var(--accent-gradient);
-            color: #fff;
-            border-color: transparent;
-            font-weight: 600;
+            color: #fff; border-color: transparent; font-weight: 600;
         }
 
-        /* Grid de Tarjetas de Productos */
+        /* Grid de Productos */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 16px;
         }
-
         @media (min-width: 600px) {
             .products-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
         }
@@ -302,290 +233,228 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             padding: 12px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            display: flex; flex-direction: column; justify-content: space-between;
             transition: var(--transition);
         }
-
-        .product-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--electric-blue);
-        }
+        .product-card:hover { transform: translateY(-4px); border-color: var(--electric-blue); }
 
         .product-img-wrapper {
-            width: 100%;
-            height: 140px;
+            width: 100%; height: 200px;
             border-radius: var(--radius-sm);
             overflow: hidden;
             background: var(--bg-secondary);
             margin-bottom: 12px;
-            position: relative;
-            cursor: pointer;
+            position: relative; cursor: pointer;
         }
-
-        .product-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .product-img { width: 100%; height: 100%; object-fit: cover; }
 
         .product-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            height: 2.6em;
-            cursor: pointer;
+            font-size: 0.9rem; font-weight: 600; margin-bottom: 4px;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+            overflow: hidden; height: 2.6em; cursor: pointer;
         }
 
-        .product-price {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--neon-green);
-            margin-bottom: 8px;
-        }
+        .product-price { font-size: 1.05rem; font-weight: 700; color: var(--neon-green); margin-bottom: 8px; }
 
         .btn-add-cart {
-            width: 100%;
-            padding: 10px;
+            width: 100%; padding: 10px;
             background: var(--accent-gradient);
-            border: none;
-            border-radius: var(--radius-sm);
-            color: #fff;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: var(--transition);
+            border: none; border-radius: var(--radius-sm);
+            color: #fff; font-weight: 600; font-size: 0.85rem;
+            cursor: pointer; transition: var(--transition);
         }
-
-        .btn-add-cart:active { transform: scale(0.96); }
 
         /* ==========================================================================
-           5. MODAL DE DETALLES Y CARRITO LATERAL
+           4. SLIDER Y DETALLES DEL MODAL DE PRODUCTO
            ========================================================================== */
-        /* Modal Detalle */
         .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.8);
+            position: fixed; inset: 0;
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(6px);
             z-index: 2000;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
+            display: flex; align-items: flex-end; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
         }
-
         @media (min-width: 600px) { .modal-overlay { align-items: center; padding: 20px; } }
-
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
 
         .modal-content {
             background: var(--bg-secondary);
-            width: 100%;
-            max-width: 500px;
-            border-top-left-radius: var(--radius-lg);
-            border-top-right-radius: var(--radius-lg);
-            padding: 24px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            border: 1px solid var(--border-color);
+            width: 100%; max-width: 580px;
+            border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg);
+            padding: 24px; max-height: 90vh; overflow-y: auto;
+            position: relative; border: 1px solid var(--border-color);
         }
-
         @media (min-width: 600px) { .modal-content { border-radius: var(--radius-lg); } }
 
         .modal-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: var(--bg-card);
-            border: none;
-            color: var(--text-main);
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
+            position: absolute; top: 16px; right: 16px;
+            background: var(--bg-card); border: none; color: var(--text-main);
+            width: 32px; height: 32px; border-radius: 50%; cursor: pointer; z-index: 10;
         }
 
-        .modal-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
+        /* Slider de Medios */
+        .slider-container {
+            position: relative;
+            width: 100%; height: 280px;
+            background: var(--bg-primary);
             border-radius: var(--radius-md);
-            margin-bottom: 16px;
+            overflow: hidden; margin-bottom: 16px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .slider-media {
+            width: 100%; height: 100%;
+            object-fit: contain; /* AJUSTA SIEMPRE AL TAMAÑO DEL CONTENEDOR SIN RECORTAR */
+        }
+        .slider-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(0,0,0,0.6); color: #fff;
+            border: none; width: 36px; height: 36px; border-radius: 50%;
+            cursor: pointer; z-index: 5;
+        }
+        .slider-btn.prev { left: 10px; }
+        .slider-btn.next { right: 10px; }
+
+        .slider-dots {
+            position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 6px; z-index: 5;
+        }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); }
+        .dot.active { background: var(--electric-blue); width: 12px; border-radius: 4px; }
+
+        /* Controles de Selección (Cantidad y Color) */
+        .options-row {
+            display: flex; flex-wrap: wrap; gap: 16px;
+            margin-bottom: 16px; background: var(--bg-card);
+            padding: 12px; border-radius: var(--radius-md);
+        }
+        .option-group { flex: 1; min-width: 140px; }
+        .option-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-bottom: 6px; display: block; }
+        
+        .quantity-control { display: flex; align-items: center; gap: 8px; }
+        .btn-qty {
+            width: 32px; height: 32px; border-radius: 6px;
+            background: var(--bg-secondary); border: 1px solid var(--border-color);
+            color: var(--text-main); font-weight: 700; cursor: pointer;
+        }
+        .qty-input {
+            width: 40px; text-align: center; background: transparent;
+            border: none; color: var(--text-main); font-weight: 700; font-size: 1rem;
         }
 
-        /* Carrito Lateral (Drawer) */
+        .color-select {
+            width: 100%; padding: 8px; background: var(--bg-secondary);
+            border: 1px solid var(--border-color); color: var(--text-main);
+            border-radius: var(--radius-sm); outline: none; font-size: 0.85rem;
+        }
+
+        /* Sección de Comentarios */
+        .comments-section {
+            margin-top: 24px; border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+        }
+        .comments-title { font-size: 1rem; font-weight: 700; margin-bottom: 12px; color: var(--electric-blue); }
+        
+        .comment-card {
+            background: var(--bg-card); border-radius: var(--radius-md);
+            padding: 12px; margin-bottom: 10px; border: 1px solid var(--border-color);
+        }
+        .comment-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+        .comment-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
+        .comment-user { font-weight: 600; font-size: 0.85rem; }
+        .comment-city { font-size: 0.7rem; color: var(--text-muted); }
+        .comment-stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 6px; }
+        .comment-text { font-size: 0.8rem; line-height: 1.4; color: var(--text-main); }
+
+        /* ==========================================================================
+           5. SECCIÓN EMPRESA & UBICACIÓN
+           ========================================================================== */
+        .store-gallery {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px; margin-top: 12px; margin-bottom: 20px;
+        }
+        .store-photo {
+            width: 100%; height: 110px; border-radius: var(--radius-sm);
+            object-fit: cover; border: 1px solid var(--border-color);
+        }
+
+        .about-card {
+            background: var(--bg-card); border-radius: var(--radius-md);
+            padding: 16px; border: 1px solid var(--border-color); margin-bottom: 16px;
+        }
+
+        .coords-box {
+            background: var(--bg-card); border-radius: var(--radius-md);
+            padding: 16px; border: 1px solid var(--border-color); font-size: 0.8rem;
+            line-height: 1.8; margin-bottom: 16px;
+        }
+        .coords-box strong { color: var(--electric-blue); }
+
+        /* ==========================================================================
+           6. NAVEGACIÓN Y CARRITO LATERAL
+           ========================================================================== */
         .cart-drawer-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.7);
-            z-index: 2500;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
+            position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+            z-index: 2500; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
         }
-
         .cart-drawer-overlay.active { opacity: 1; pointer-events: auto; }
 
         .cart-drawer {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background: var(--bg-secondary);
-            z-index: 2600;
-            display: flex;
-            flex-direction: column;
+            position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100%;
+            background: var(--bg-secondary); z-index: 2600; display: flex; flex-direction: column;
             transition: right 0.3s ease;
         }
-
         .cart-drawer.active { right: 0; }
 
-        .cart-header {
-            padding: 20px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .cart-body {
-            flex: 1;
-            overflow-y: auto;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .cart-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--bg-card);
-            padding: 10px;
-            border-radius: var(--radius-md);
-        }
-
-        .cart-item-img {
-            width: 60px;
-            height: 60px;
-            border-radius: var(--radius-sm);
-            object-fit: cover;
-        }
-
-        .cart-footer {
-            padding: 20px;
-            border-top: 1px solid var(--border-color);
-            background: var(--bg-card);
-        }
+        .cart-header { padding: 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+        .cart-body { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+        .cart-item { display: flex; align-items: center; gap: 12px; background: var(--bg-card); padding: 10px; border-radius: var(--radius-md); }
+        .cart-item-img { width: 60px; height: 60px; border-radius: var(--radius-sm); object-fit: cover; }
+        .cart-footer { padding: 20px; border-top: 1px solid var(--border-color); background: var(--bg-card); }
 
         .btn-checkout {
-            width: 100%;
-            padding: 14px;
-            background: #25d366;
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            width: 100%; padding: 14px; background: #25d366; color: white;
+            border: none; border-radius: var(--radius-md); font-weight: 700; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;
         }
 
-        /* ==========================================================================
-           6. NAVEGACIÓN INFERIOR (BOTTOM NAVIGATION BAR) Y BOTÓN FLOTANTE
-           ========================================================================== */
         .whatsapp-float {
-            position: fixed;
-            bottom: calc(var(--bottom-nav-height) + 16px);
-            right: 16px;
-            width: 50px;
-            height: 50px;
-            background: #25d366;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-            z-index: 900;
-            text-decoration: none;
+            position: fixed; bottom: calc(var(--bottom-nav-height) + 16px); right: 16px;
+            width: 50px; height: 50px; background: #25d366; color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4); z-index: 900; text-decoration: none;
         }
 
         .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: var(--bottom-nav-height);
-            background: var(--bg-glass);
-            backdrop-filter: blur(12px);
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 1000;
+            position: fixed; bottom: 0; left: 0; right: 0;
+            height: var(--bottom-nav-height); background: var(--bg-glass);
+            backdrop-filter: blur(12px); border-top: 1px solid var(--border-color);
+            display: flex; justify-content: space-around; align-items: center; z-index: 1000;
         }
-
         .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--text-muted);
-            font-size: 0.7rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            width: 25%;
+            display: flex; flex-direction: column; align-items: center;
+            color: var(--text-muted); font-size: 0.65rem; background: none; border: none;
+            cursor: pointer; width: 20%;
         }
-
-        .nav-item i { font-size: 1.2rem; margin-bottom: 2px; }
+        .nav-item i { font-size: 1.1rem; margin-bottom: 2px; }
         .nav-item.active { color: var(--electric-blue); font-weight: 700; }
 
-        /* Toast de notificación */
         .toast {
-            position: fixed;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-20px);
-            background: var(--accent-gradient);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            z-index: 3000;
-            opacity: 0;
-            transition: all 0.3s ease;
+            position: fixed; top: 80px; left: 50%; transform: translateX(-50%) translateY(-20px);
+            background: var(--accent-gradient); color: white; padding: 10px 20px; border-radius: 20px;
+            font-size: 0.85rem; font-weight: 600; z-index: 3000; opacity: 0; transition: all 0.3s ease;
         }
-
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     </style>
 </head>
 <body>
 
-    <!-- Notificación Toast -->
-    <div id="toast" class="toast">Mensaje del sistema</div>
+    <div id="toast" class="toast">Notificación</div>
 
-    <!-- ENCABEZADO SUPERIOR -->
+    <!-- ENCABEZADO FIJO -->
     <header class="top-header">
         <div class="brand-container">
             <div class="brand-logo-container">
-                <!-- SVG de Logo predeterminado -->
                 <img src="img/logo.jpeg" alt="Logo La Tiendita" class="brand-logo">
             </div>
             <div>
@@ -595,11 +464,7 @@
         </div>
 
         <div class="header-actions">
-            <!-- Botón para alternar Tema Claro / Oscuro -->
-            <button class="icon-btn" id="themeToggle" aria-label="Cambiar Tema">
-                <i class="fas fa-moon"></i>
-            </button>
-            <!-- Botón para abrir el Carrito Lateral -->
+            <button class="icon-btn" id="themeToggle" aria-label="Cambiar Tema"><i class="fas fa-moon"></i></button>
             <button class="icon-btn" id="cartToggle" aria-label="Ver Carrito">
                 <i class="fas fa-shopping-bag"></i>
                 <span class="cart-badge" id="cartCount">0</span>
@@ -607,13 +472,13 @@
         </div>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL (VISTAS) -->
+    <!-- SECCIONES / VISTAS DE LA APP -->
     <main>
         <!-- VISTA: INICIO -->
         <section id="view-inicio" class="app-view active">
             <div class="hero-banner">
                 <h2 class="hero-title">Tecnología y más para ti</h2>
-                <p class="hero-subtitle">Encuentra los mejores dispositivos y accesorios en Valledupar.</p>
+                <p class="hero-subtitle">Encuentra los mejores dispositivos, accesorios y Avisos Neón en Valledupar.</p>
                 <div class="social-buttons">
                     <a href="https://facebook.com/latienditavalledupar" target="_blank" class="btn-social facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://instagram.com/latienditavalleduparr" target="_blank" class="btn-social instagram"><i class="fab fa-instagram"></i></a>
@@ -627,66 +492,122 @@
 
         <!-- VISTA: PRODUCTOS -->
         <section id="view-productos" class="app-view">
-            <!-- Buscador -->
             <div class="search-container">
                 <i class="fas fa-search search-icon"></i>
                 <input type="text" id="searchInput" class="search-input" placeholder="Buscar productos...">
             </div>
-
-            <!-- Filtros por Categoría -->
             <div class="categories-scroll" id="categoriesContainer"></div>
-
-            <!-- Grid de Todos los Productos -->
             <div class="products-grid" id="mainProductsGrid"></div>
+        </section>
+
+        <!-- NUEVA VISTA: AVISOS NEÓN -->
+        <section id="view-neon" class="app-view">
+            <div class="hero-banner" style="background: linear-gradient(135deg, rgba(255,0,127,0.15), rgba(0,210,255,0.15)); border-color: var(--neon-pink);">
+                <h2 class="hero-title" style="color: var(--neon-pink); text-shadow: 0 0 10px rgba(255,0,127,0.5);">Avisos Neón LED</h2>
+                <p class="hero-subtitle">Personaliza tus espacios con luces neón de alta calidad.</p>
+            </div>
+
+            <!-- Clasificación de Avisos Neón -->
+            <div class="categories-scroll" id="neonCategoriesContainer"></div>
+            <div class="products-grid" id="neonProductsGrid"></div>
         </section>
 
         <!-- VISTA: EMPRESA -->
         <section id="view-empresa" class="app-view">
-            <div class="hero-banner" style="text-align: left;">
-                <h2 class="hero-title" style="color: var(--electric-blue);">La Tiendita Valledupar</h2>
-                <p style="font-size: 0.9rem; line-height: 1.5; margin-top: 10px;">
-                    Somos tu comercio local en Valledupar especializado en tecnología, dispositivos electrónicos, audio y accesorios de telefonía celular. Ofrecemos atención directa y domicilios rápidos.
+            <div class="about-card">
+                <h2 style="color: var(--electric-blue); font-size: 1.3rem; margin-bottom: 8px;">¿Quiénes Somos?</h2>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 12px;">
+                    <img id="empresaProfileImg" src="" alt="Quiénes Somos Foto" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--electric-blue);">
+                    <p style="flex:1; font-size: 0.85rem; line-height: 1.5; min-width: 200px;">
+                        Somos **La Tiendita Valledupar**, tu tienda local de confianza en tecnología, accesorios electrónicos y diseño de avisos neón personalizados. Brindamos productos de excelente calidad, asesoría cercana y envíos rápidos en toda la ciudad.
+                    </p>
+                </div>
+            </div>
+
+            <h3 style="font-size: 1rem; margin-bottom: 8px; color: var(--neon-pink);">Fotos de Nuestra Tienda</h3>
+            <div class="store-gallery" id="storeGallery"></div>
+
+            <div class="about-card">
+                <h3 style="color: var(--neon-green); font-size: 1.1rem; margin-bottom: 6px;"><i class="fas fa-bullseye"></i> Misión</h3>
+                <p style="font-size: 0.85rem; line-height: 1.5; color: var(--text-muted);">
+                    Ofrecer soluciones tecnológicas accesibles y elementos de decoración Neón innovadores que mejoren la vida de nuestros clientes, respaldados siempre por una atención rápida, honesta y personalizada.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <h3 style="color: var(--gold); font-size: 1.1rem; margin-bottom: 6px;"><i class="fas fa-eye"></i> Visión</h3>
+                <p style="font-size: 0.85rem; line-height: 1.5; color: var(--text-muted);">
+                    Consolidarnos como la tienda líder en Valledupar en innovación tecnológica y avisos Neón, siendo reconocidos por nuestro compromiso con el servicio al cliente y la excelencia operativa.
                 </p>
             </div>
         </section>
 
-        <!-- VISTA: UBICACIÓN -->
+        <!-- VISTA: UBICACIÓN MEJORADA CON COORDENADAS PRECISAS -->
         <section id="view-ubicacion" class="app-view">
             <h3 style="margin-bottom: 8px;">Nuestra Ubicación</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
                 Carrera 20 # 13b bis - 07, Valledupar, Colombia
             </p>
-
-            <!-- Mapa Integrado -->
-            <div style="width: 100%; height: 200px; border-radius: var(--radius-md); overflow: hidden; margin-bottom: 16px;">
+            
+            <div style="width: 100%; height: 250px; border-radius: var(--radius-md); overflow: hidden; margin-bottom: 16px; border: 1px solid var(--border-color);">
                 <iframe 
-                    title="Ubicación La Tiendita"
-                    src="https://maps.google.com/maps?q=Carrera%2020%20%23%2013b%20bis%20-%2007%2C%20Valledupar%2C%20Colombia&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                    title="Ubicación Exacta"
+                    src="https://maps.google.com/maps?q=10.46974451,-73.26424319&t=&z=17&ie=UTF8&iwloc=&output=embed" 
                     width="100%" height="100%" style="border:0;" loading="lazy">
                 </iframe>
             </div>
 
-            <a href="https://maps.google.com/?q=Carrera+20+#+13b+bis+-+07,+Valledupar,+Colombia" target="_blank" class="btn-add-cart" style="display: block; text-align: center; text-decoration: none;">
-                <i class="fas fa-directions"></i> CÓMO LLEGAR
+            <a href="https://maps.google.com/?q=10.46974451,-73.26424319" target="_blank" class="btn-add-cart" style="display: block; text-align: center; text-decoration: none;">
+                <i class="fas fa-directions"></i> CÓMO LLEGAR (GPS)
             </a>
         </section>
     </main>
 
-    <!-- MODAL DETALLE DE PRODUCTO -->
+    <!-- MODAL DETALLE DE PRODUCTO (CON SLIDER, SELECCIÓN Y COMENTARIOS) -->
     <div class="modal-overlay" id="productModal">
         <div class="modal-content">
             <button class="modal-close" id="closeModal"><i class="fas fa-times"></i></button>
-            <img src="" alt="" class="modal-img" id="modalImg">
-            <h3 id="modalTitle" style="margin-bottom: 6px;"></h3>
+            
+            <!-- Slider de Medios (Imágenes y Videos) -->
+            <div class="slider-container">
+                <button class="slider-btn prev" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                <div id="sliderMediaWrapper" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;"></div>
+                <button class="slider-btn next" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
+                <div class="slider-dots" id="sliderDots"></div>
+            </div>
+
+            <h3 id="modalTitle" style="margin-bottom: 4px;"></h3>
             <div id="modalPrice" style="font-size: 1.3rem; font-weight: 700; color: var(--neon-green); margin-bottom: 12px;"></div>
             <p id="modalDesc" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;"></p>
-            
+
+            <!-- Opciones del Producto: Cantidad y Disponibilidad de Color -->
+            <div class="options-row">
+                <div class="option-group">
+                    <span class="option-label">Cantidad</span>
+                    <div class="quantity-control">
+                        <button class="btn-qty" onclick="adjustQty(-1)">-</button>
+                        <input type="text" id="selectedQty" class="qty-input" value="1" readonly>
+                        <button class="btn-qty" onclick="adjustQty(1)">+</button>
+                    </div>
+                </div>
+                <div class="option-group" id="colorGroup">
+                    <span class="option-label">Color Disponibles</span>
+                    <select id="colorSelect" class="color-select"></select>
+                </div>
+            </div>
+
             <button class="btn-add-cart" id="modalAddBtn" style="margin-bottom: 8px;">
-                <i class="fas fa-cart-plus"></i> Agregar al carrito
+                <i class="fas fa-cart-plus"></i> Agregar al Carrito
             </button>
             <a href="#" target="_blank" id="modalWspBtn" class="btn-checkout" style="text-decoration: none;">
-                <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
+                <i class="fab fa-whatsapp"></i> Comprar por WhatsApp Directo
             </a>
+
+            <!-- Caja de Comentarios y Puntuaciones -->
+            <div class="comments-section">
+                <div class="comments-title"><i class="fas fa-comments"></i> Opiniones de Compradores</div>
+                <div id="commentsContainer"></div>
+            </div>
         </div>
     </div>
 
@@ -709,12 +630,11 @@
         </div>
     </aside>
 
-    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
     <a href="https://wa.me/573235652270" target="_blank" class="whatsapp-float" aria-label="WhatsApp Directo">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- NAVEGACIÓN INFERIOR FIJA -->
+    <!-- NAVEGACIÓN INFERIOR MEJORADA -->
     <nav class="bottom-nav">
         <button class="nav-item active" onclick="switchView('inicio')">
             <i class="fas fa-home"></i>
@@ -723,6 +643,10 @@
         <button class="nav-item" onclick="switchView('productos')">
             <i class="fas fa-mobile-alt"></i>
             <span>Productos</span>
+        </button>
+        <button class="nav-item" onclick="switchView('neon')">
+            <i class="fas fa-lightbulb"></i>
+            <span>Avisos Neón</span>
         </button>
         <button class="nav-item" onclick="switchView('empresa')">
             <i class="fas fa-store"></i>
@@ -734,50 +658,16 @@
         </button>
     </nav>
 
-    <!-- ==========================================================================
-       7. LÓGICA JAVASCRIPT Y GESTIÓN DE GOOGLE DRIVE
-       ========================================================================== -->
+    <!-- SCRIPT DE LÓGICA Y DATOS -->
     <script>
-        
-        /**
-         * SISTEMA DE IMÁGENES DE GOOGLE DRIVE (CON RESPALDO AUTOMÁTICO)
-         * ---------------------------------------------------------------
-         * IMPORTANTE — LEE ESTO:
-         * Google NO ofrece una forma oficial ni garantizada de "incrustar" imágenes
-         * de Drive en una página web. Los trucos de URL (uc?export=view, /thumbnail,
-         * lh3.googleusercontent.com) son formatos NO documentados que Google cambia
-         * o bloquea sin previo aviso (errores 403/400, límite de peticiones, etc.).
-         * Por eso, en vez de depender de un solo formato, generamos varias
-         * variantes de URL para cada imagen y, si una falla al cargar, el propio
-         * <img> intenta automáticamente con la siguiente (evento onerror), y si
-         * todas fallan, se muestra una imagen de reemplazo en vez de un ícono roto.
-         *
-         * Formatos de enlace de Drive soportados como ENTRADA:
-         * - https://drive.google.com/file/d/ID/view?usp=sharing (o usp=drive_link)
-         * - https://drive.google.com/open?id=ID
-         * - https://drive.google.com/uc?id=ID
-         * - https://lh3.googleusercontent.com/d/ID
-         * - Cualquier otra URL de imagen normal (se usa tal cual, sin cambios).
-         *
-         * REQUISITO EN DRIVE: cada archivo debe estar compartido como
-         * "Cualquier persona con el enlace" (rol: Lector). Si el archivo es privado,
-         * ningún formato de URL va a funcionar.
-         */
-
-        // Imagen de repuesto (SVG en base64) que se muestra si TODAS las variantes fallan
+        // MANEJO DE IMÁGENES GOOGLE DRIVE
         const PLACEHOLDER_IMAGE = "data:image/svg+xml;base64," + btoa(`
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
                 <rect width="400" height="400" fill="#1e293b"/>
-                <g fill="#64748b">
-                    <path d="M140 150h120a10 10 0 0 1 10 10v100a10 10 0 0 1-10 10H140a10 10 0 0 1-10-10V160a10 10 0 0 1 10-10z" fill="none" stroke="#64748b" stroke-width="6"/>
-                    <circle cx="165" cy="180" r="10"/>
-                    <path d="M130 245l45-40 35 30 35-45 55 55v20a10 10 0 0 1-10 10H140a10 10 0 0 1-10-10z"/>
-                </g>
-                <text x="200" y="290" fill="#64748b" font-family="sans-serif" font-size="13" text-anchor="middle">Imagen no disponible</text>
+                <text x="200" y="200" fill="#64748b" font-family="sans-serif" font-size="14" text-anchor="middle">Imagen no disponible</text>
             </svg>
         `);
 
-        // Extrae el ID único del archivo a partir de cualquier formato conocido de enlace de Drive
         function extractGoogleDriveId(url) {
             if (!url) return null;
             const driveRegex = /(?:drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=view&)?id=|thumbnail\?id=)|lh3\.googleusercontent\.com\/d\/)([a-zA-Z0-9_-]+)/;
@@ -785,10 +675,9 @@
             return match ? match[1] : null;
         }
 
-        // Genera, en orden de fiabilidad, todas las variantes de URL a intentar para un mismo archivo
         function getGoogleDriveImageVariants(url) {
             const id = extractGoogleDriveId(url);
-            if (!id) return [url]; // No es un enlace de Drive: se usa la URL original tal cual
+            if (!id) return [url];
             return [
                 `https://lh3.googleusercontent.com/d/${id}=w1000`,
                 `https://drive.google.com/thumbnail?id=${id}&sz=w1000`,
@@ -796,7 +685,6 @@
             ];
         }
 
-        // Construye el atributo src inicial + la lista de respaldos como data-attribute
         function buildImageAttrs(url) {
             const variants = getGoogleDriveImageVariants(url);
             const [first, ...rest] = variants;
@@ -804,160 +692,520 @@
             return `src="${first}" data-fallbacks='${fallbacksAttr}' onerror="handleImageError(this)"`;
         }
 
-        // Se ejecuta cuando una <img> falla al cargar: prueba el siguiente formato o, si ya no quedan, muestra el placeholder
         function handleImageError(imgEl) {
             let fallbacks = [];
             try { fallbacks = JSON.parse((imgEl.dataset.fallbacks || '[]').replace(/&quot;/g, '"')); } catch (e) { fallbacks = []; }
-
             if (fallbacks.length > 0) {
                 const next = fallbacks.shift();
                 imgEl.dataset.fallbacks = JSON.stringify(fallbacks);
                 imgEl.src = next;
             } else {
-                imgEl.onerror = null; // evita bucles infinitos
+                imgEl.onerror = null;
                 imgEl.src = PLACEHOLDER_IMAGE;
             }
         }
 
-        /* ==========================================================================
-           BASE DE DATOS DE PRODUCTOS
-           Para usar tus propias imágenes de Google Drive, simplemente copia el enlace
-           de compartir en la propiedad "image".
-           ========================================================================== */
+        /* FOTO QUIÉNES SOMOS (GDRIVE LINK) Y TIENDA */
+        const QUIENES_SOMOS_DRIVE_PHOTO = "https://drive.google.com/file/d/1NQA4vXSbDeF-Gox5TiKKAKTotIB0rDS-/view?usp=drive_link";
+        const STORE_PHOTOS = [
+            "https://drive.google.com/file/d/1NQA4vXSbDeF-Gox5TiKKAKTotIB0rDS-/view?usp=drive_link",
+            "https://drive.google.com/file/d/1c8T6hfoNu9aBed4pEgiLafaJBdQaM04h/view?usp=drive_link",
+            "https://drive.google.com/file/d/1FAyf1HaGGs1eYG168-Mu6eT75LnHeNXA/view?usp=drive_link"
+        ];
+
+        /* BASE DE DATOS DE PRODUCTOS Y AVISOS NEÓN */
         const PRODUCTS_DATA = [
+
+        /* CELULARES O SMARTPHONE */
+        /* ID: CEL-(01-05) */
             {
                 id: "cel-01",
                 name: "Smartphone X Pro 128GB",
                 category: "Celulares",
                 price: 850000,
-                stock: 5,
-                image: "https://drive.google.com/file/d/1NQA4vXSbDeF-Gox5TiKKAKTotIB0rDS-/view?usp=drive_link",
+                featured: true,
+                colors: ["Negro Azabache", "Azul Eléctrico", "Plata"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/1NQA4vXSbDeF-Gox5TiKKAKTotIB0rDS-/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1c8T6hfoNu9aBed4pEgiLafaJBdQaM04h/view?usp=drive_link" }
+                ],
                 description: "Pantalla AMOLED 120Hz, cámara triple de 64MP y batería para todo el día.",
-                featured: true
+                reviews: [
+                    { name: "Juan David Ramírez", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=12", stars: 5, comment: "Excelente teléfono, la cámara de noche es espectacular. Súper recomendado." },
+                    { name: "María José Orozco", city: "La Paz", avatar: "https://i.pravatar.cc/100?img=5", stars: 4, comment: "Muy buen servicio y entrega rápida el mismo día." }
+                ]
             },
-            {
-                id: "cel-02",
-                name: "Smartphone Lite Y20",
-                category: "Celulares",
-                price: 620000,
-                stock: 8,
-                image: "https://drive.google.com/file/d/1c8T6hfoNu9aBed4pEgiLafaJBdQaM04h/view?usp=drive_link",
-                description: "Diseño compacto, cámara dual de 48MP y carga rápida incluida.",
-                featured: false
-            },
+              /* AUDIO Y SONIDO */
+        /* ID: aud-(01) Parlantes*/
             {
                 id: "aud-01",
+                name: "Audífonos de Conducción Ósea",
+                category: "Audífonos",
+                price: 120000,
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro", "Rosado"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/1P_RYN6bm4lBiYb98hguNzclMe4gxOYhX/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1s61lZQh1MS8MRjBwCr-zNh4XGbClYZGp/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1DHychAuvNyInam95Ku8_dPBozG4FS5nc/view?usp=drive_link" },
+                    { type: "video", url: "https://www.w3schools.com/html/mov_bbb.mp4" } // Ejemplo de video
+                ],
+                description: "Disfruta de tu música y llamadas sin aislarte completamente del entorno. Los audífonos de conducción ósea transmiten el sonido mediante vibraciones, permitiendo mantener los oídos más libres para percibir los sonidos ambientales. Son una excelente opción para actividades deportivas, caminatas, ciclismo y uso diario.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El sonido de los bajos es potente. Los uso para hacer ejercicio." }
+                ]
+            },
+            {
+                id: "aud-09",
+                name: "Auriculares Inalambrico",
+                category: "Audífonos",
+                price: 120000,
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro", "Rosado"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/1zAwq6RLV_H0jkRWc12eVi9uMYLNoGIAD/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1zPce1EnvP5QZJz8OMR26MLCb-K_-xEm3/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1R2-KLPJGKQfS3-CU5WhZZ6TTI271gAHn/view?usp=drive_link" },
+                    { type: "video", url: "https://drive.google.com/file/d/19e5X9Gr-2ZeBQcH6v0cOxjBVK5EHeT1N/view?usp=drive_link" } // Ejemplo de video
+                ],
+                description: "Disfruta de tu música y llamadas sin aislarte completamente del entorno. Los audífonos de conducción ósea transmiten el sonido mediante vibraciones, permitiendo mantener los oídos más libres para percibir los sonidos ambientales. Son una excelente opción para actividades deportivas, caminatas, ciclismo y uso diario.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El sonido de los bajos es potente. Los uso para hacer ejercicio." }
+                ]
+            },
+             {
+                id: "aud-02",
+                name: "Parlante UBL Pequeño",
+                category: "Parlantes",
+                price: 49000,
+                featured: true,
+                colors: ["Negro", "Blanco", "Azul", "Rojo", "Verde"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/1d-tqkGVqSNZCTC91MCUBqwkkpOa4Q4g4/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1VkesUxvgF37YQxuepr_BIxkWJdNW1Zmp/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/16qiyp6yUcMUF5wqwycK9WCTkOVKOQExN/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1v71QqMwL_SrTMe_yNiipPgqnShgqAyGC/view?usp=drive_link" },
+                    
+                   // { type: "video", url: "https://www.w3schools.com/html/mov_bbb.mp4" } // Ejemplo de video
+                ],
+                description: "Lleva tu música a todas partes con este parlante compacto y práctico. Su tamaño facilita el transporte, mientras que su conexión inalámbrica permite disfrutar de tus canciones favoritas desde dispositivos compatibles. Ideal para reuniones, paseos, habitaciones y momentos de entretenimiento.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El sonido de los bajos es potente. Los uso para hacer ejercicio." }
+                ]
+            },
+            {
+                id: "aud-03",
+                name: "Parlante UBL Barra",
+                category: "Parlantes",
+                price: 89000,
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/1itrs4EkudALTtFAV29WMWnfgyBcSzl03/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1itrs4EkudALTtFAV29WMWnfgyBcSzl03/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1itrs4EkudALTtFAV29WMWnfgyBcSzl03/view?usp=drive_link" },
+                  //  { type: "video", url: "https://www.w3schools.com/html/mov_bbb.mp4" } // Ejemplo de video
+                ],
+                description: "Disfruta de una experiencia de sonido más amplia con este parlante tipo barra, ideal para complementar tus espacios de entretenimiento. Su diseño moderno combina fácilmente con diferentes ambientes y es una excelente alternativa para escuchar música, ver películas o disfrutar de contenido multimedia.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El sonido de los bajos es potente. Los uso para hacer ejercicio." }
+                ]
+            },
+            {
+                id: "aud-04",
+                name: "Parlante Bluetooth SoundBox Mini + Microfono",
+                category: "Parlantes",
+                price: 89000,
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/1PO1eZZN1wTm08zFilX1RLeyFt3yq7Qgy/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1eKffTjra8NumloIuHEHFL_t5VrBdzUB5/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1aRrS1sX5tpM9mTPPM4avZkmB3DvCDRLE/view?usp=drive_link" },
+                     { type: "image", url: "https://drive.google.com/file/d/1K65v1Wb86-5bppXoHzjwZTBki1efNnY4/view?usp=drive_link" },
+                      { type: "image", url: "https://drive.google.com/file/d/1Ms-KpDX37TCYXVTcGUfUZ2gKfyu6cqGb/view?usp=drive_link" },
+                  //  { type: "video", url: "https://www.w3schools.com/html/mov_bbb.mp4" } // Ejemplo de video
+                ],
+                description: "Sonido envolvente, resistente al agua IPX6 y 10 horas de batería.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El sonido de los bajos es potente. Los uso para hacer ejercicio." }
+                ]
+            },
+             {
+                id: "aud-04",
                 name: "Audífonos Bluetooth Pro Sound",
                 category: "Audífonos",
                 price: 89000,
-                stock: 12,
-                image: "https://drive.google.com/file/d/1FAyf1HaGGs1eYG168-Mu6eT75LnHeNXA/view?usp=drive_link",            
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/1FAyf1HaGGs1eYG168-Mu6eT75LnHeNXA/view?usp=drive_link" },
+                    { type: "video", url: "https://www.w3schools.com/html/mov_bbb.mp4" } // Ejemplo de video
+                ],
                 description: "Cancelación de ruido activa, graves profundos y hasta 24h de reproducción.",
-                featured: true
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El sonido de los bajos es potente. Los uso para hacer ejercicio." }
+                ]
+            }, //const CATEGORIES = ["Todos", "Celulares", "Accesorios", "Audífonos", "Cargadores", "Smartwatch", "Parlantes", "Hogar Inteligente"];//
+             {
+                id: "aud-05",
+                name: "Diadema Unicornio",
+                category: "Audífonos",
+                price: 89000,
+                featured: true,
+                colors: ["Rosado", "Blanco Puro"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/1Wzwm-vYJEDbA1hoPWKwSSiwiQNEZyJ2G/view?usp=drive_link" },
+                  //  { type: "video", url: "https://www.w3schools.com/html/mov_bbb.mp4" } // Ejemplo de video
+                ],
+                description: "Dale un toque divertido y encantador a cualquier look con esta colorida diadema de unicornio. Su diseño llamativo es ideal para niñas, fiestas, cumpleaños, disfraces, sesiones de fotos y momentos especiales. Un accesorio divertido que también puede convertirse en un excelente regalo.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El sonido de los bajos es potente. Los uso para hacer ejercicio." }
+                ]
+            },
+             /* Accesorios */
+        /* ID: cel-(01) */
+            {
+                id: "cel-05",
+                name: "MONOPOD (Trípode y Palo de Selfie)",
+                category: "Accesorios",
+                price: 85000,
+                featured: true,
+                colors: ["Negro"],
+                media: [{ type: "image", url: "https://drive.google.com/file/d/1t9uw2j9UN0cD9rW6ymMvofMCm4us0fjz/view?usp=drivesdk" }],
+                description: "Diseño 3 en 1: Funciona como bastón de mano (palo selfie) o se convierte en una base estable de tres patas (trípode). Control remoto Bluetooth: Permite tomar fotos o iniciar vídeos a distancia, y suele ser desmontable. Cabezal giratorio: Ajustable en 360° en horizontal y rotación vertical para tomas en formato retrato o paisaje. Portabilidad: Es ligero, plegable y fácil de guardar en un bolsillo o bolso..",
+                reviews: [{ name: "Lucía Gómez", city: "Aguachica", avatar: "https://i.pravatar.cc/100?img=9", stars: 5, comment: "Práctico y liviano, perfecto para mis viajes." }]
             },
             {
-                id: "aud-02",
+                id: "cel-06",
+                name: "Matera Groo",
+                category: "Hogar Inteligente",
+                price: 85000,
+                featured: true,
+                colors: ["Universal"],
+                media: [{ type: "image", url: "https://drive.google.com/file/d/1Q86feo63gBVEodzBl-ZAg6t2U99H0EC1/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1n_ubvHc-ddDBPiPfJEFjG7TyZsbmnfKy/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1CAhAtJ24N2toEopGKUpvOZGlE7maBFqH/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1kWjfQV5I2fcBLPK89k_BubZ8OiFSxVgf/view?usp=sharing" }
+                ],
+                description: "Dale un toque original y divertido a tus espacios con la Matera Groo, un accesorio decorativo ideal para plantas pequeñas y medianas. Su diseño llamativo combina funcionalidad y estilo, convirtiéndola en una excelente opción para decorar escritorios, habitaciones, oficinas o cualquier rincón del hogar.",
+                reviews: [{ name: "Lucía Gómez", city: "Aguachica", avatar: "https://i.pravatar.cc/100?img=9", stars: 5, comment: "Práctico y liviano, perfecto para mis viajes." }]
+            },
+            {
+                id: "cel-07",
                 name: "USB 8GB Kingston",
                 category: "Accesorios",
                 price: 50000,
-                stock: 12,
-                image: "https://drive.google.com/file/d/1EBTNsu6riKZScbhHBIGkPCCYXY97oQey/view?usp=drive_link",
+                featured: true,
+                colors: ["Plateado"],
+                media: [{ type: "image", url: "https://drive.google.com/file/d/1EBTNsu6riKZScbhHBIGkPCCYXY97oQey/view?usp=drive_link" }],
                 description: "La Kingston Data Traveler SE9 está fabricada con una carcasa metálica ultra resistente y ligera con un diseño con sin tapa para que nunca pierdas nada..",
-                featured: true
+                reviews: [{ name: "Lucía Gómez", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=9", stars: 5, comment: "Práctico y liviano, perfecto para mis viajes." }]
             },
             {
-                id: "sw-01",
-                name: "Smartwatch Sport X10",
-                category: "Smartwatch",
-                price: 129000,
-                stock: 8,
-                image: "https://drive.google.com/file/d/17J_MnTo-Zbwt-Eujiw6vWmS8UGaSRyWU/view?usp=drive_link"
-                description: "Monitoreo de ritmo cardíaco, GPS integrado y resistencia al agua IP68.",
-                featured: true
-            },
-            {
-                id: "carg-01",
-                name: "Cargador Carga Rápida 33W Tipo C",
-                category: "Cargadores",
-                price: 45000,
-                stock: 20,
-                image: "https://drive.google.com/file/d/1Arx8WrpSBB6mqkoP5m1D0W5b3m5R5-YJ/view?usp=drive_link",
-                description: "Carga super rápida con protección contra sobrecargas.",
-                featured: false
-            },
-            {
-                id: "parl-01",
-                name: "Parlante Bluetooth SoundBox Mini",
-                category: "Parlantes",
-                price: 95000,
-                stock: 10,
-                image: "https://drive.google.com/file/d/1-_xVKsXFxDzkKF7MsRbCsMoTF53-6QeY/view?usp=drivesdk",
-                description: "Sonido envolvente, resistente al agua IPX6 y 10 horas de batería.",
-                featured: true
-            },
-            {
-                id: "hog-01",
-                name: "Bombillo Inteligente WiFi RGB",
-                category: "Hogar Inteligente",
-                price: 38000,
-                stock: 15,
-                image: "https://drive.google.com/file/d/1fbHD53OuJVh5btROlwzNOXFSu5Wbbvdd/view?usp=drive_link",
-                description: "Control por app y voz, 16 millones de colores, compatible con Alexa y Google Home.",
-                featured: false
-            },
-        {
-                id: "acc-01",
-                name: "MONOPOD (Trípode y Palo de Selfie)",
+                id: "cel-08",
+                name: "USB Disco Flash MR-402",
                 category: "Accesorios",
-                price: 78000,
-                stock: 15,
-                image: "https://drive.google.com/file/d/1t9uw2j9UN0cD9rW6ymMvofMCm4us0fjz/view?usp=drivesdk",
-                description: "Diseño 3 en 1: Funciona como bastón de mano (palo selfie) o se convierte en una base estable de tres patas (trípode). Control remoto Bluetooth: Permite tomar fotos o iniciar vídeos a distancia, y suele ser desmontable. Cabezal giratorio: Ajustable en 360° en horizontal y rotación vertical para tomas en formato retrato o paisaje. Portabilidad: Es ligero, plegable y fácil de guardar en un bolsillo o bolso",
-                featured: false
+                price: 50000,
+                featured: true,
+                colors: ["Plateado"],
+                media: [{ type: "image", url: "https://drive.google.com/file/d/1zpWeqdPxVa93Mc4rS2j8SCSeGPCZ60-u/view?usp=drive_link" }],
+                description: "Guarda y transporta tus archivos de forma práctica con este dispositivo de almacenamiento USB. Ideal para documentos, fotografías, videos, música y archivos personales, ofreciendo una solución compacta para llevar tu información contigo y facilitar la transferencia de archivos entre dispositivos compatibles.",
+                reviews: [{ name: "Lucía Gómez", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=9", stars: 5, comment: "Práctico y liviano, perfecto para mis viajes." }]
             },
-        {
-                id: "acc-02",
-                name: "Mini Teclado Inalámbrico",
+            {
+                id: "aud-010",
+                name: "Dron",
                 category: "Accesorios",
-                price: 38000,
-                stock: 15,
-                image: "https://drive.google.com/file/d/1_0Kdaq7cq5Gms2-2TP3GX2NSVtLoqAh5/view?usp=drivesdk",
-                    description: "Convierte cualquier pantalla en tu centro de control. Con este mini teclado inalámbrico tendrás comodidad, velocidad y libertad en un solo dispositivo. Olvídate del control tradicional: navega, escribe y busca en YouTube, Netflix y Google desde tu Smart TV, TV Box, PC o Tablet sin levantarte del sofá. Su conexión inalámbrica de 10 metros, touchpad integrado y diseño ultra compacto lo hacen perfecto para llevarlo a donde quieras. Es Plug & Play, compatible con todo y con batería recargable para que no te quedes sin energía. Más control, menos cables y máxima comodidad",
-                    featured: false
+                price: 120000,
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro", "Rosado"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/1UgBbw7vYiMIOjgEqcWALxdEuEj4i2BjJ/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1KIhwnv7sK-Q3i3MxTzlyILaGJLM1FlM3/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1EqfkA8-zEDsCJlyZAWswRXtteo-Bdzfu/view?usp=drive_link" } 
+                ],
+                description: "Explora nuevas perspectivas y captura momentos increíbles desde el aire con este práctico dron. Ideal para entretenimiento, fotografía y video recreativo, permite disfrutar de una experiencia diferente y divertida para principiantes y aficionados a la tecnología.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El dron es espectacular. Los uso para hacer mis videos." }
+                ]
+            },
+            {
+                id: "aud-011",
+                name: "GamePad",
+                category: "Accesorios",
+                price: 120000,
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro", "Rosado"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/1vEWL17n6EBYUFmmhi3X49-xky6GokqEc/view?usp=drive_link" },
+                    { type: "video", url: "" },
+                     
+                ],
+                description: "Lleva tus partidas a otro nivel con este Game Pad diseñado para ofrecer un control cómodo y preciso durante tus sesiones de juego. Su formato facilita el acceso a los botones y controles, convirtiéndolo en una excelente opción para disfrutar de tus videojuegos favoritos con mayor comodidad.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El dron es espectacular. Los uso para hacer mis videos." }
+                ]
+            },
+            {
+                id: "aud-012",
+                name: "Mini Teclado Inalambrico",
+                category: "Accesorios",
+                price: 120000,
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro", "Rosado"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/1_0Kdaq7cq5Gms2-2TP3GX2NSVtLoqAh5/view?usp=drive_link" },
+                    { type: "video", url: "" },
+                     
+                ],
+                description: "Compacto, práctico y fácil de transportar, este mini teclado inalámbrico es ideal para controlar Smart TV, computadores, TV Box y otros dispositivos compatibles. Su diseño pequeño facilita el manejo desde el sofá o cualquier lugar, ofreciendo una solución cómoda para navegar, escribir y controlar contenido multimedia.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El dron es espectacular. Los uso para hacer mis videos." }
+                ]
+            },
+             {
+                id: "aud-013",
+                name: "Interconector USB",
+                category: "Accesorios",
+                price: 120000,
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro", "Rosado"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/14gZmUYt-QKxERJ8eR5_8Su3MGsqbUjTF/view?usp=drive_link" },
+                    { type: "video", url: "" },
+                     
+                ],
+                description: "Compacto, práctico y fácil de transportar, este mini teclado inalámbrico es ideal para controlar Smart TV, computadores, TV Box y otros dispositivos compatibles. Su diseño pequeño facilita el manejo desde el sofá o cualquier lugar, ofreciendo una solución cómoda para navegar, escribir y controlar contenido multimedia.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El dron es espectacular. Los uso para hacer mis videos." }
+                ]
+            },
+            {
+                id: "aud-019",
+                name: "Intercomunicador para Casco",
+                category: "Accesorios",
+                price: 120000,
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro", "Rosado"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/121GuGHvAwkD_yBoSxQcnSRwa4D2w1J4o/view?usp=drive_link" },
+                    { type: "video", url: "" },
+                     
+                ],
+                description: "Mantente conectado mientras conduces con este práctico intercomunicador para motocicleta, ideal para comunicarte con tu acompañante, atender llamadas y escuchar música de forma cómoda durante tus recorridos. Su diseño está pensado para adaptarse al casco y facilitar la comunicación sin necesidad de utilizar el celular mientras conduces.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El dron es espectacular. Los uso para hacer mis videos." }
+                ]
+            },
+            {
+                id: "aud-014",
+                name: "Cinta Led Decorativa",
+                category: "Accesorios",
+                price: 120000,
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro", "Rosado"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/1SfeV_z7UdCoWW69_BlvUHeazLJOz7qFk/view?usp=drive_link" },
+                    { type: "video", url: "" },
+                     
+                ],
+                description: "ideal para salas, cuartos, oficinas.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El dron es espectacular. Los uso para hacer mis videos." }
+                ]
+            },
+            {
+                id: "aud-015",
+                name: "Luna Led de Mesa",
+                category: "Accesorios",
+                price: 120000,
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro", "Rosado"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/16HUQD8Rmh22JwT6FG5rDdMrmgb6LzThR/view?usp=drive_link" },
+                    { type: "video", url: "" },
+                     
+                ],
+                description: "Brilla en la oscuridad, ideal para la noche.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El dron es espectacular. Los uso para hacer mis videos." }
+                ]
+            },
+            {
+                id: "aud-016",
+                name: "Esfera Led Planetaria",
+                category: "Accesorios",
+                price: 120000,
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro", "Rosado"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/1XVTDR9BnD8XS4XUTTius11SZJ5HcgSAY/view?usp=drive_link" },
+                    { type: "video", url: "" },
+                     
+                ],
+                description: "Brilla en la oscuridad, ideal para la noche.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El dron es espectacular. Los uso para hacer mis videos." }
+                ]
+            },
+            {
+                id: "aud-017",
+                name: "Mini Maquina",
+                category: "Accesorios",
+                price: 120000,
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro", "Rosado"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/13-001W-g09KiZ_SF9sahw1DZXaUqrwAc/view?usp=drive_link" },
+                    { type: "image", url: "https://drive.google.com/file/d/1ZEcK9m5BkUQOQBUbZb63DDZYN5Lm7IP6/view?usp=drive_link" },
+                    { type: "video", url: "" },
+                     
+                ],
+                description: "Brilla en la oscuridad, ideal para la noche.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El dron es espectacular. Los uso para hacer mis videos." }
+                ]
+            },
+            {
+                id: "aud-018",
+                name: "Mini Maquina",
+                category: "Accesorios",
+                price: 120000,
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro", "Rosado"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/17ekWpA_Wjg6T_CkTchleF8ytEkGrgpzl/view?usp=drive_link" },
+                  
+                     
+                ],
+                description: "lorem.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El dron es espectacular. Los uso para hacer mis videos." }
+                ]
+            },
+            {
+                id: "aud-020",
+                name: "Cargador 100W",
+                category: "Accesorios",
+                price: 120000,
+                featured: true,
+                colors: ["Negro Mateo", "Blanco Puro", "Rosado"],
+                media: [
+                    { type: "image", url: "https://drive.google.com/file/d/1Arx8WrpSBB6mqkoP5m1D0W5b3m5R5-YJ/view?usp=drive_link" },
+                  
+                     
+                ],
+                description: "lorem.",
+                reviews: [
+                    { name: "Andrés Felipe Cárdenas", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=3", stars: 5, comment: "El dron es espectacular. Los uso para hacer mis videos." }
+                ]
+            },
+        ];
+
+        /* BASE DE DATOS AVISOS NEÓN */
+        const NEON_CATEGORIES = ["Todos", "Empresas", "Cumpleaños", "Grados", "Navidad", "Personalizados", "Frases", "Oficinas"];
+
+        const NEON_PRODUCTS_DATA = [
+            {
+                id: "neon-01",
+                name: "Aviso Neón Logo Empresa Custom",
+                category: "Empresas",
+                price: 250000,
+                colors: ["Rosa Neón", "Azul Neón", "Verde Neón", "Blanco Cálido"],
+                media: [{ type: "image", url: "https://drive.google.com/file/d/1kcViLqhg-Cy127BMmRCxo-x9zDDcN88z/view?usp=drive_link" }           
+            
+                ],
+                description: "Fabricamos el logo de tu empresa en Neón Flex con base acrílica transparente.",
+                reviews: [{ name: "Carlos Mendoza", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=8", stars: 5, comment: "Quedó perfecto en la recepción de mi negocio. Le da un toque muy moderno." }]
+            },
+            {
+                id: "neon-02",
+                name: "Aviso Neón 'Happy Birthday'",
+                category: "Cumpleaños",
+                price: 120000,
+                colors: ["Rosa", "Amarillo Neón", "Multicolor"],
+                media: [{ type: "image", url: "https://drive.google.com/file/d/1PCyqCvE624YeJqcnzOnA7KjEqkm4Rs27/view?usp=drive_link" }],
+                description: "Ideal para decoración de eventos y fotografías de cumpleaños.",
+                reviews: [{ name: "Patricia Vega", city: "Valledupar", avatar: "https://i.pravatar.cc/100?img=20", stars: 5, comment: "Le dio el toque mágico a la fiesta de mi hija." }]
+            },
+            {
+                id: "neon-03",
+                name: "Aviso Neón 'Arbol de Navidad'",
+                category: "Navidad",
+                price: 140000,
+                colors: ["Dorado / Blanco Cálido", "Azul"],
+                media: [{ type: "image", url: "https://drive.google.com/file/d/1bEMbCTf9qPCk-2OhuJW4XUXq0kMPCeTN/view?usp=drive_link" },
+                 { type: "video", url: "https://drive.google.com/file/d/1JM_BBqbJXmN36uchua3Jbi_tjwNBqPK_/view?usp=drive_link" }
+                ],
+                description: "Celebra tu logro académico con un aviso neón inolvidable.",
+                reviews: []
+            },
+            {
+                id: "neon-04",
+                name: "Frase 'La Demora me perjudica'",
+                category: "Frases",
+                price: 180000,
+                colors: ["Azul Neón", "Rosa Neón"],
+                media: [{ type: "image", url: "https://drive.google.com/file/d/1PCyqCvE624YeJqcnzOnA7KjEqkm4Rs27/view?usp=drive_link" }],
+                description: "Ideal para habitaciones, oficinas o locales comerciales.",
+                reviews: [{ name: "Jorge Blanco", city: "Codazzi", avatar: "https://i.pravatar.cc/100?img=11", stars: 5, comment: "Llegó muy bien empacado y la luz ilumina bastante." }]
+            },
+             {
+                id: "neon-05",
+                name: "Frase 'Ho Ho Ho'",
+                category: "Navidad",
+                price: 180000,
+                colors: ["Azul Neón", "Rosa Neón"],
+                media: [{ type: "image", url: "https://drive.google.com/file/d/1t3itifBjsVfB1YAIjn-EdpQYL_3ck2QN/view?usp=drive_link" }],
+                description: "Ideal para Salas, oficinas o locales comerciales.",
+                reviews: [{ name: "Juan Garcia", city: "Codazzi", avatar: "https://i.pravatar.cc/100?img=11", stars: 5, comment: "Llegó muy bien empacado y la luz ilumina bastante." }]
+            }, {
+                id: "neon-06",
+                name: "Frase 'Mery Christmas'",
+                category: "Navidad",
+                price: 180000,
+                colors: ["Azul Neón", "Rosa Neón"],
+                media: [{ type: "image", url: "https://drive.google.com/file/d/18TYstCGSSfmHpNaMF1DwotWYLoI64rzU/view?usp=drive_link" }],
+                description: "Ideal para Salas, oficinas o locales comerciales.",
+                reviews: [{ name: "Edgar Blanco", city: "La Mesa", avatar: "https://i.pravatar.cc/100?img=11", stars: 5, comment: "Llegó muy bien empacado y la luz ilumina bastante." }]
             }
-        
         ];
 
         const CATEGORIES = ["Todos", "Celulares", "Accesorios", "Audífonos", "Cargadores", "Smartwatch", "Parlantes", "Hogar Inteligente"];
 
-        /* ESTADO GLOBAL DE LA APLICACIÓN */
+        /* ESTADO GLOBAL */
         let cart = [];
         let currentCategory = "Todos";
-        let activeModalProduct = null;
+        let currentNeonCategory = "Todos";
+        let activeProduct = null;
+        let currentSlideIndex = 0;
 
         /* ELEMENTOS DEL DOM */
         const mainProductsGrid = document.getElementById("mainProductsGrid");
         const featuredProductsGrid = document.getElementById("featuredProducts");
+        const neonProductsGrid = document.getElementById("neonProductsGrid");
         const categoriesContainer = document.getElementById("categoriesContainer");
+        const neonCategoriesContainer = document.getElementById("neonCategoriesContainer");
         const searchInput = document.getElementById("searchInput");
         const cartDrawer = document.getElementById("cartDrawer");
         const cartOverlay = document.getElementById("cartOverlay");
-        const cartToggleBtn = document.getElementById("cartToggle");
-        const closeCartBtn = document.getElementById("closeCart");
         const cartCountBadge = document.getElementById("cartCount");
         const cartItemsContainer = document.getElementById("cartItemsContainer");
         const cartTotalEl = document.getElementById("cartTotal");
         const productModal = document.getElementById("productModal");
 
-        /* INICIALIZACIÓN DE LA APLICACIÓN */
+        /* INICIALIZACIÓN */
         document.addEventListener("DOMContentLoaded", () => {
             renderCategories();
+            renderNeonCategories();
             renderProducts(PRODUCTS_DATA);
             renderFeaturedProducts();
+            renderNeonProducts(NEON_PRODUCTS_DATA);
+            loadEmpresaMedia();
             setupEventListeners();
         });
 
-        /* CAMBIO DE VISTAS (Navegación Dinámica SPA) */
         function switchView(viewName) {
             document.querySelectorAll(".app-view").forEach(el => el.classList.remove("active"));
             document.querySelectorAll(".nav-item").forEach(el => el.classList.remove("active"));
@@ -965,188 +1213,294 @@
             const targetView = document.getElementById(`view-${viewName}`);
             if (targetView) targetView.classList.add("active");
 
-            const viewsIndex = { 'inicio': 0, 'productos': 1, 'empresa': 2, 'ubicacion': 3 };
+            const viewsIndex = { 'inicio': 0, 'productos': 1, 'neon': 2, 'empresa': 3, 'ubicacion': 4 };
             const navItems = document.querySelectorAll(".nav-item");
-            if (viewsIndex[viewName] !== undefined) navItems[viewsIndex[viewName]].classList.add("active");
+            if (viewsIndex[viewName] !== undefined && navItems[viewsIndex[viewName]]) {
+                navItems[viewsIndex[viewName]].classList.add("active");
+            }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        /* FORMATEADOR DE MONEDA */
         function formatPrice(val) {
             return new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(val);
         }
 
-        /* RENDERIZADO DE CATEGORÍAS */
+        /* CATEGORÍAS */
         function renderCategories() {
             categoriesContainer.innerHTML = CATEGORIES.map(cat => `
-                <button class="category-chip ${cat === currentCategory ? 'active' : ''}" onclick="filterByCategory('${cat}')">
-                    ${cat}
-                </button>
+                <button class="category-chip ${cat === currentCategory ? 'active' : ''}" onclick="filterByCategory('${cat}')">${cat}</button>
             `).join("");
         }
 
-        /* RENDERIZADO DE TARJETAS DE PRODUCTOS */
-        function renderProducts(productsList) {
-            if (productsList.length === 0) {
-                mainProductsGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 20px;">No se encontraron productos.</p>`;
+        function renderNeonCategories() {
+            neonCategoriesContainer.innerHTML = NEON_CATEGORIES.map(cat => `
+                <button class="category-chip ${cat === currentNeonCategory ? 'active' : ''}" onclick="filterNeonByCategory('${cat}')">${cat}</button>
+            `).join("");
+        }
+
+        /* RENDERIZADO DE PRODUCTOS */
+        function renderProducts(list) {
+            if (list.length === 0) {
+                mainProductsGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 20px;">No hay productos.</p>`;
                 return;
             }
-
-            mainProductsGrid.innerHTML = productsList.map(prod => {
-                return `
-                    <div class="product-card">
-                        <div class="product-img-wrapper" onclick="openProductModal('${prod.id}')">
-                            <img ${buildImageAttrs(prod.image)} alt="${prod.name}" class="product-img" loading="lazy">
-                        </div>
-                        <h4 class="product-title" onclick="openProductModal('${prod.id}')">${prod.name}</h4>
-                        <div class="product-price">${formatPrice(prod.price)}</div>
-                        <button class="btn-add-cart" onclick="addToCart('${prod.id}')">
-                            <i class="fas fa-cart-plus"></i> Agregar
-                        </button>
-                    </div>
-                `;
-            }).join("");
+            mainProductsGrid.innerHTML = list.map(prod => createProductCardHTML(prod)).join("");
         }
 
-        /* RENDERIZADO DE PRODUCTOS DESTACADOS */
         function renderFeaturedProducts() {
             const featured = PRODUCTS_DATA.filter(p => p.featured);
-            featuredProductsGrid.innerHTML = featured.map(prod => {
-                return `
-                    <div class="product-card">
-                        <div class="product-img-wrapper" onclick="openProductModal('${prod.id}')">
-                            <img ${buildImageAttrs(prod.image)} alt="${prod.name}" class="product-img" loading="lazy">
-                        </div>
-                        <h4 class="product-title" onclick="openProductModal('${prod.id}')">${prod.name}</h4>
-                        <div class="product-price">${formatPrice(prod.price)}</div>
-                        <button class="btn-add-cart" onclick="addToCart('${prod.id}')">
-                            <i class="fas fa-cart-plus"></i> Agregar
-                        </button>
-                    </div>
-                `;
-            }).join("");
+            featuredProductsGrid.innerHTML = featured.map(prod => createProductCardHTML(prod)).join("");
         }
 
-        /* FILTRADO Y BÚSQUEDA DE PRODUCTOS */
+        function renderNeonProducts(list) {
+            if (list.length === 0) {
+                neonProductsGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 20px;">No hay avisos neón en esta categoría.</p>`;
+                return;
+            }
+            neonProductsGrid.innerHTML = list.map(prod => createProductCardHTML(prod, true)).join("");
+        }
+
+        function createProductCardHTML(prod, isNeon = false) {
+            const firstImg = prod.media && prod.media[0] ? prod.media[0].url : "";
+            return `
+                <div class="product-card">
+                    <div class="product-img-wrapper" onclick="openProductModal('${prod.id}', ${isNeon})">
+                        <img ${buildImageAttrs(firstImg)} alt="${prod.name}" class="product-img" loading="lazy">
+                    </div>
+                    <h4 class="product-title" onclick="openProductModal('${prod.id}', ${isNeon})">${prod.name}</h4>
+                    <div class="product-price">${formatPrice(prod.price)}</div>
+                    <button class="btn-add-cart" onclick="openProductModal('${prod.id}', ${isNeon})">
+                        <i class="fas fa-eye"></i> Ver Detalles
+                    </button>
+                </div>
+            `;
+        }
+
         function filterByCategory(cat) {
             currentCategory = cat;
             renderCategories();
             applyFilters();
         }
 
+        function filterNeonByCategory(cat) {
+            currentNeonCategory = cat;
+            renderNeonCategories();
+            let filtered = NEON_PRODUCTS_DATA;
+            if (cat !== "Todos") {
+                filtered = filtered.filter(p => p.category === cat);
+            }
+            renderNeonProducts(filtered);
+        }
+
         function applyFilters() {
             const query = searchInput.value.toLowerCase().trim();
             let filtered = PRODUCTS_DATA;
-
-            if (currentCategory !== "Todos") {
-                filtered = filtered.filter(p => p.category === currentCategory);
-            }
-
-            if (query !== "") {
-                filtered = filtered.filter(p => p.name.toLowerCase().includes(query));
-            }
-
+            if (currentCategory !== "Todos") filtered = filtered.filter(p => p.category === currentCategory);
+            if (query !== "") filtered = filtered.filter(p => p.name.toLowerCase().includes(query));
             renderProducts(filtered);
         }
 
-        /* LÓGICA DEL CARRITO DE COMPRAS */
-        function addToCart(productId) {
-            const product = PRODUCTS_DATA.find(p => p.id === productId);
-            if (!product) return;
+        /* CARGA DE MULTIMEDIA DE LA SECCIÓN EMPRESA */
+        function loadEmpresaMedia() {
+            const profileEl = document.getElementById("empresaProfileImg");
+            if (profileEl) profileEl.src = getGoogleDriveImageVariants(QUIENES_SOMOS_DRIVE_PHOTO)[0];
 
-            const existing = cart.find(item => item.id === productId);
-            if (existing) {
-                existing.quantity++;
-            } else {
-                cart.push({ ...product, quantity: 1 });
+            const galleryContainer = document.getElementById("storeGallery");
+            if (galleryContainer) {
+                galleryContainer.innerHTML = STORE_PHOTOS.map(url => `
+                    <img ${buildImageAttrs(url)} class="store-photo" alt="Tienda Foto">
+                `).join("");
             }
-
-            showToast("Producto agregado al carrito");
-            updateCartUI();
         }
 
-        function removeFromCart(productId) {
-            cart = cart.filter(i => i.id !== productId);
+        /* MODAL DE DETALLE DE PRODUCTO Y SLIDER */
+        function openProductModal(productId, isNeon = false) {
+            const pool = isNeon ? NEON_PRODUCTS_DATA : PRODUCTS_DATA;
+            const product = pool.find(p => p.id === productId);
+            if (!product) return;
+
+            activeProduct = product;
+            currentSlideIndex = 0;
+
+            document.getElementById("modalTitle").innerText = product.name;
+            document.getElementById("modalPrice").innerText = formatPrice(product.price);
+            document.getElementById("modalDesc").innerText = product.description;
+            document.getElementById("selectedQty").value = 1;
+
+            // Renderizado de Selección de Colores
+            const colorSelect = document.getElementById("colorSelect");
+            if (product.colors && product.colors.length > 0) {
+                document.getElementById("colorGroup").style.display = "block";
+                colorSelect.innerHTML = product.colors.map(c => `<option value="${c}">${c}</option>`).join("");
+            } else {
+                document.getElementById("colorGroup").style.display = "none";
+            }
+
+            // Cargar Slider
+            renderSlider();
+
+            // Cargar Comentarios
+            renderComments(product.reviews || []);
+
+            updateModalWspLink();
+            productModal.classList.add("active");
+        }
+
+        function renderSlider() {
+            const mediaList = activeProduct.media || [];
+            const wrapper = document.getElementById("sliderMediaWrapper");
+            const dotsContainer = document.getElementById("sliderDots");
+
+            if (mediaList.length === 0) {
+                wrapper.innerHTML = `<img src="${PLACEHOLDER_IMAGE}" class="slider-media">`;
+                dotsContainer.innerHTML = "";
+                return;
+            }
+
+            const current = mediaList[currentSlideIndex];
+            if (current.type === "video") {
+                wrapper.innerHTML = `<video src="${current.url}" controls class="slider-media"></video>`;
+            } else {
+                const variants = getGoogleDriveImageVariants(current.url);
+                wrapper.innerHTML = `<img src="${variants[0]}" class="slider-media" data-fallbacks='${JSON.stringify(variants.slice(1))}' onerror="handleImageError(this)">`;
+            }
+
+            // Puntos navegables
+            dotsContainer.innerHTML = mediaList.map((_, idx) => `
+                <div class="dot ${idx === currentSlideIndex ? 'active' : ''}" onclick="goToSlide(${idx})"></div>
+            `).join("");
+        }
+
+        function moveSlide(direction) {
+            if (!activeProduct || !activeProduct.media) return;
+            const total = activeProduct.media.length;
+            currentSlideIndex = (currentSlideIndex + direction + total) % total;
+            renderSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            renderSlider();
+        }
+
+        function adjustQty(delta) {
+            const input = document.getElementById("selectedQty");
+            let val = parseInt(input.value) + delta;
+            if (val < 1) val = 1;
+            input.value = val;
+            updateModalWspLink();
+        }
+
+        function updateModalWspLink() {
+            if (!activeProduct) return;
+            const qty = document.getElementById("selectedQty").value;
+            const colorSelect = document.getElementById("colorSelect");
+            const color = colorSelect.value ? colorSelect.value : "Único";
+
+            const msg = `Hola La Tiendita Valledupar, me interesa adquirir:\n\n📌 *${activeProduct.name}*\n🎨 *Color:* ${color}\n🔢 *Cantidad:* ${qty}\n💰 *Precio:* ${formatPrice(activeProduct.price * qty)}`;
+            document.getElementById("modalWspBtn").href = `https://wa.me/573235652270?text=${encodeURIComponent(msg)}`;
+        }
+
+        function renderComments(reviews) {
+            const container = document.getElementById("commentsContainer");
+            if (reviews.length === 0) {
+                container.innerHTML = `<p style="font-size: 0.8rem; color: var(--text-muted);">Este producto aún no tiene comentarios. ¡Sé el primero!</p>`;
+                return;
+            }
+
+            container.innerHTML = reviews.map(rev => `
+                <div class="comment-card">
+                    <div class="comment-header">
+                        <img src="${rev.avatar}" class="comment-avatar" alt="${rev.name}">
+                        <div>
+                            <div class="comment-user">${rev.name}</div>
+                            <div class="comment-city"><i class="fas fa-map-marker-alt"></i> ${rev.city}</div>
+                        </div>
+                    </div>
+                    <div class="comment-stars">${'★'.repeat(rev.stars)}${'☆'.repeat(5 - rev.stars)}</div>
+                    <div class="comment-text">${rev.comment}</div>
+                </div>
+            `).join("");
+        }
+
+        function closeModal() { productModal.classList.remove("active"); }
+
+        /* MANEJO DEL CARRITO */
+        function addToCartFromModal() {
+            if (!activeProduct) return;
+            const qty = parseInt(document.getElementById("selectedQty").value);
+            const colorSelect = document.getElementById("colorSelect");
+            const color = colorSelect.value ? colorSelect.value : "Único";
+
+            const cartItemId = `${activeProduct.id}-${color}`;
+            const existing = cart.find(i => i.cartItemId === cartItemId);
+
+            if (existing) {
+                existing.quantity += qty;
+            } else {
+                cart.push({
+                    ...activeProduct,
+                    cartItemId,
+                    selectedColor: color,
+                    quantity: qty
+                });
+            }
+
+            showToast("Producto añadido al carrito");
+            updateCartUI();
+            closeModal();
+        }
+
+        function removeFromCart(cartItemId) {
+            cart = cart.filter(i => i.cartItemId !== cartItemId);
             updateCartUI();
         }
 
         function updateCartUI() {
-            // Actualización del contador en la barra superior
             const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
             cartCountBadge.innerText = totalItems;
 
-            // Render de los elementos dentro del carrito
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = `<p style="text-align: center; color: var(--text-muted); margin-top: 20px;">Tu carrito está vacío.</p>`;
             } else {
                 cartItemsContainer.innerHTML = cart.map(item => `
                     <div class="cart-item">
-                        <img ${buildImageAttrs(item.image)} class="cart-item-img" alt="${item.name}">
+                        <img ${buildImageAttrs(item.media && item.media[0] ? item.media[0].url : '')} class="cart-item-img" alt="${item.name}">
                         <div style="flex:1;">
                             <div style="font-size:0.85rem; font-weight:600;">${item.name}</div>
+                            <div style="font-size:0.75rem; color:var(--text-muted);">Color: ${item.selectedColor}</div>
                             <div style="font-size:0.8rem; color:var(--neon-green);">${formatPrice(item.price)} x ${item.quantity}</div>
                         </div>
-                        <button onclick="removeFromCart('${item.id}')" style="background:none; border:none; color:var(--neon-pink); cursor:pointer;">
+                        <button onclick="removeFromCart('${item.cartItemId}')" style="background:none; border:none; color:var(--neon-pink); cursor:pointer;">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </div>
                 `).join("");
             }
 
-            // Cálculo y actualización del precio total
             const totalAmount = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
             cartTotalEl.innerText = formatPrice(totalAmount);
         }
 
-        /* FINALIZACIÓN DE COMPRA VÍA WHATSAPP */
         function checkoutWhatsApp() {
             if (cart.length === 0) {
                 alert("Agrega al menos un producto al carrito.");
                 return;
             }
 
-            let message = "Hola, La Tiendita Valledupar. Estoy interesado en realizar la siguiente compra:\n\n🛍️ *Mi pedido:*\n\n";
-
+            let message = "Hola, La Tiendita Valledupar. Deseo realizar el siguiente pedido:\n\n🛍️ *Mi Pedido:*\n\n";
             cart.forEach(item => {
                 const subtotal = item.price * item.quantity;
-                message += `• *${item.name}*\n  Cantidad: ${item.quantity}\n  Precio unitario: ${formatPrice(item.price)}\n  Subtotal: ${formatPrice(subtotal)}\n\n`;
+                message += `• *${item.name}*\n  Color: ${item.selectedColor}\n  Cantidad: ${item.quantity}\n  Subtotal: ${formatPrice(subtotal)}\n\n`;
             });
 
             const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-            message += `💰 *Total: ${formatPrice(total)}*\n\nQuisiera recibir información sobre disponibilidad y formas de pago.`;
+            message += `💰 *Total a Pagar: ${formatPrice(total)}*\n\nPor favor, me confirman disponibilidad y medios de pago.`;
 
-            // Encriptado de mensaje e integración con la API de WhatsApp
-            const encodedText = encodeURIComponent(message);
-            window.open(`https://wa.me/573235652270?text=${encodedText}`, "_blank");
+            window.open(`https://wa.me/573235652270?text=${encodeURIComponent(message)}`, "_blank");
         }
 
-        /* MODAL DE DETALLE DE PRODUCTO */
-        function openProductModal(productId) {
-            const product = PRODUCTS_DATA.find(p => p.id === productId);
-            if (!product) return;
-
-            activeModalProduct = product;
-            const modalImgEl = document.getElementById("modalImg");
-            const variants = getGoogleDriveImageVariants(product.image);
-            modalImgEl.dataset.fallbacks = JSON.stringify(variants.slice(1));
-            modalImgEl.onerror = () => handleImageError(modalImgEl);
-            modalImgEl.src = variants[0];
-            document.getElementById("modalTitle").innerText = product.name;
-            document.getElementById("modalPrice").innerText = formatPrice(product.price);
-            document.getElementById("modalDesc").innerText = product.description;
-
-            const wspMsg = encodeURIComponent(`Hola La Tiendita Valledupar, me interesa el producto: ${product.name}`);
-            document.getElementById("modalWspBtn").href = `https://wa.me/573235652270?text=${wspMsg}`;
-
-            productModal.classList.add("active");
-        }
-
-        function closeModal() {
-            productModal.classList.remove("active");
-        }
-
-        /* NOTIFICACIÓN TOAST VISUAL */
         function showToast(msg) {
             const toast = document.getElementById("toast");
             toast.innerText = msg;
@@ -1154,15 +1508,13 @@
             setTimeout(() => toast.classList.remove("show"), 2000);
         }
 
-        /* CONTROLADORES DE EVENTOS (Listeners) */
         function setupEventListeners() {
-            // Mostrar y ocultar carrito lateral
-            cartToggleBtn.addEventListener("click", () => {
+            document.getElementById("cartToggle").addEventListener("click", () => {
                 cartDrawer.classList.add("active");
                 cartOverlay.classList.add("active");
             });
 
-            closeCartBtn.addEventListener("click", () => {
+            document.getElementById("closeCart").addEventListener("click", () => {
                 cartDrawer.classList.remove("active");
                 cartOverlay.classList.remove("active");
             });
@@ -1172,35 +1524,13 @@
                 cartOverlay.classList.remove("active");
             });
 
-            // Acción del botón Finalizar Compra
             document.getElementById("btnCheckout").addEventListener("click", checkoutWhatsApp);
-
-            // Cierre del Modal
             document.getElementById("closeModal").addEventListener("click", closeModal);
-            productModal.addEventListener("click", (e) => {
-                if (e.target === productModal) closeModal();
-            });
+            document.getElementById("modalAddBtn").addEventListener("click", addToCartFromModal);
 
-            document.getElementById("modalAddBtn").addEventListener("click", () => {
-                if (activeModalProduct) {
-                    addToCart(activeModalProduct.id);
-                    closeModal();
-                }
-            });
-
-            // Buscador dinámico
+            document.getElementById("colorSelect").addEventListener("change", updateModalWspLink);
             searchInput.addEventListener("input", applyFilters);
 
-            // Cierre por tecla ESC
-            document.addEventListener("keydown", (e) => {
-                if (e.key === "Escape") {
-                    closeModal();
-                    cartDrawer.classList.remove("active");
-                    cartOverlay.classList.remove("active");
-                }
-            });
-
-            // Alternar Tema Claro / Oscuro
             document.getElementById("themeToggle").addEventListener("click", () => {
                 const currentTheme = document.documentElement.getAttribute("data-theme");
                 const newTheme = currentTheme === "dark" ? "light" : "dark";
